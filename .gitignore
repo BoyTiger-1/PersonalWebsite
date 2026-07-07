@@ -1,0 +1,14 @@
+# os cruft
+.DS_Store
+Thumbs.db
+
+# editor
+.vscode/
+.idea/
+
+# node, only if a build ever gets added later
+node_modules/
+dist/
+
+# local notes and the build plan (keep the repo about the site itself)
+PLAN.md
