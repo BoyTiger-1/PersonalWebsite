@@ -156,8 +156,10 @@ section { position: relative; z-index: 2; padding: clamp(72px, 12vh, 160px) var(
   font-size: clamp(28px, 4.4vw, 56px); margin: 14px 0 16px; color: var(--text);
   transition: color .4s;
 }
-/* outlined until revealed / hovered, then fills with the accent */
-.project__title[data-fill] { color: transparent; -webkit-text-stroke: 1px var(--muted); }
+/* readable by default (no-js / reduced-motion safe); js adds the outline,
+   then fills it back in on scroll as a progressive-enhancement effect */
+.project__title[data-fill] { color: var(--accent); -webkit-text-stroke: 1px transparent; }
+.project__title[data-fill].is-outlined { color: transparent; -webkit-text-stroke: 1px var(--muted); }
 .project__title[data-fill].is-filled { color: var(--accent); -webkit-text-stroke: 1px transparent; }
 .project__hook { color: var(--text); font-size: clamp(16px, 1.6vw, 21px); font-weight: 500; margin-bottom: 18px; }
 .project__points { list-style: none; display: flex; flex-direction: column; gap: 12px; color: var(--muted); }
@@ -235,7 +237,8 @@ section { position: relative; z-index: 2; padding: clamp(72px, 12vh, 160px) var(
 .contact { text-align: center; padding-block: clamp(90px, 16vh, 200px); }
 .contact .section-num { color: var(--faint); }
 .contact__title { font-family: var(--font-display); font-weight: 700; font-size: clamp(40px, 9vw, 130px); letter-spacing: -.03em; line-height: .95; margin: 18px 0 24px; }
-.contact__title[data-fill] { color: transparent; -webkit-text-stroke: 1.5px var(--muted); transition: color .5s, -webkit-text-stroke .5s; }
+.contact__title[data-fill] { color: var(--text); -webkit-text-stroke: 1.5px transparent; transition: color .5s, -webkit-text-stroke .5s; }
+.contact__title[data-fill].is-outlined { color: transparent; -webkit-text-stroke: 1.5px var(--muted); }
 .contact__title[data-fill].is-filled { color: var(--text); -webkit-text-stroke: 1.5px transparent; }
 .contact__sub { color: var(--muted); max-width: 520px; margin: 0 auto 44px; font-size: clamp(15px, 1.5vw, 19px); }
 .contact__links { display: flex; flex-direction: column; gap: 12px; max-width: 520px; margin: 0 auto; }
@@ -246,10 +249,9 @@ section { position: relative; z-index: 2; padding: clamp(72px, 12vh, 160px) var(
 
 /* ---------- footer ---------- */
 .footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; align-items: center; padding: 30px var(--gutter); border-top: 1px solid var(--line); color: var(--faint); font-size: 13px; position: relative; z-index: 2; }
-.footer__braille { font-size: 18px; color: var(--muted); cursor: help; transition: color .2s; letter-spacing: .1em; }
+.footer__braille { font-size: 18px; color: var(--muted); cursor: help; transition: color .2s; letter-spacing: .1em; min-width: 5ch; text-align: center; }
 .footer__braille:hover, .footer__braille:focus { color: var(--ember); }
-.footer__braille::after { content: attr(data-translate); position: absolute; opacity: 0; transform: translateY(4px); transition: opacity .2s; }
-.footer__braille:hover::after, .footer__braille:focus::after { opacity: 0; } /* handled inline; kept simple */
+@media (max-width: 560px) { .footer { justify-content: center; text-align: center; } }
 
 /* ---------- scroll-reveal base state (js adds .in) ---------- */
 [data-reveal] { opacity: 0; transform: translateY(38px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); will-change: opacity, transform; }

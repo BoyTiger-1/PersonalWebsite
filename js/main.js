@@ -50,6 +50,7 @@
       const frame = factory(ctx, getSize);
       let raf = null;
       const start = performance.now();
+      frame(2.6); // paint one settled frame right away so the canvas is never blank pre-scroll
 
       function loop(now) {
         frame((now - start) / 1000);
@@ -60,7 +61,7 @@
       const io = new IntersectionObserver((entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting && raf === null) {
-            if (reduce) { frame(0.6); return; } // one static frame, no loop
+            if (reduce) { frame(2.6); return; } // one settled static frame, no loop
             raf = requestAnimationFrame(loop);
           } else if (!e.isIntersecting && raf !== null) {
             cancelAnimationFrame(raf); raf = null;
@@ -97,24 +98,20 @@
       });
     });
 
-    if (reduce) { els.forEach((el) => el.classList.add('in')); return; }
-
-    // also fill the outlined project titles as they arrive
+    // titles are readable by default; only apply the outline when we can
+    // animate it back to filled, so reduced-motion keeps them legible
     const fills = document.querySelectorAll('[data-fill]');
+    if (reduce) { els.forEach((el) => el.classList.add('in')); return; }
+    fills.forEach((el) => el.classList.add('is-outlined'));
+    const fillIn = (el) => { el.classList.remove('is-outlined'); el.classList.add('is-filled'); };
 
     if (hasGSAP && window.ScrollTrigger) {
       gsap.registerPlugin(ScrollTrigger);
       els.forEach((el) => {
-        ScrollTrigger.create({
-          trigger: el, start: 'top 85%',
-          onEnter: () => el.classList.add('in'),
-        });
+        ScrollTrigger.create({ trigger: el, start: 'top 85%', onEnter: () => el.classList.add('in') });
       });
       fills.forEach((el) => {
-        ScrollTrigger.create({
-          trigger: el, start: 'top 80%',
-          onEnter: () => el.classList.add('is-filled'),
-        });
+        ScrollTrigger.create({ trigger: el, start: 'top 80%', onEnter: () => fillIn(el) });
       });
     } else {
       const io = new IntersectionObserver((entries, obs) => {
@@ -124,7 +121,7 @@
       }, { threshold: 0.15 });
       els.forEach((el) => io.observe(el));
       const io2 = new IntersectionObserver((entries, obs) => {
-        entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-filled'); obs.unobserve(e.target); } });
+        entries.forEach((e) => { if (e.isIntersecting) { fillIn(e.target); obs.unobserve(e.target); } });
       }, { threshold: 0.4 });
       fills.forEach((el) => io2.observe(el));
     }
