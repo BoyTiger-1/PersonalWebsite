@@ -3,23 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ronit Agarwal — Builder & AI/ML Developer</title>
+  <title>Ronit Agarwal — I build AI that ships.</title>
 
-  <!-- basic seo -->
-  <meta name="description" content="Ronit Agarwal is a high school AI/ML developer and independent builder from Bothell, WA. State and national competition winner shipping end-to-end software, from ML pipelines to deployed web apps." />
+  <meta name="description" content="Ronit Agarwal is a high school AI/ML developer from Bothell, WA who ships AI-powered products to real users and wins at the state and national level." />
   <meta name="author" content="Ronit Agarwal" />
   <meta name="theme-color" content="#0A0A0B" />
   <link rel="canonical" href="https://ronitagarwal.dev/" />
 
-  <!-- open graph / social cards -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Ronit Agarwal — Builder & AI/ML Developer" />
+  <meta property="og:title" content="Ronit Agarwal — I build AI that ships." />
   <meta property="og:description" content="High school AI/ML developer shipping real products. State and national placements across tech, data, and business." />
   <meta property="og:image" content="assets/og.svg" />
   <meta property="og:url" content="https://ronitagarwal.dev/" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Ronit Agarwal — Builder & AI/ML Developer" />
-  <meta name="twitter:description" content="High school AI/ML developer shipping real products." />
+  <meta name="twitter:title" content="Ronit Agarwal — I build AI that ships." />
   <meta name="twitter:image" content="assets/og.svg" />
 
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
@@ -27,32 +24,41 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+
+  <!-- if js never runs, still show all content readably -->
+  <noscript><style>#intro{display:none!important}[data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
-  <!-- scroll progress bar -->
+  <!-- ============ CINEMATIC INTRO ============ -->
+  <div class="intro" id="intro" aria-hidden="true">
+    <canvas class="intro__canvas" id="introCanvas"></canvas>
+    <div class="intro__center">
+      <div class="intro__name" id="introName">RONIT AGARWAL</div>
+      <div class="intro__bar"><span id="introBarFill"></span></div>
+      <div class="intro__pct mono"><span id="introPct">0</span>%</div>
+    </div>
+  </div>
+
+  <!-- webgl ember hero, sits behind everything -->
+  <canvas class="hero-gl" id="heroGl" aria-hidden="true"></canvas>
+
+  <!-- overlays -->
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
-
-  <!-- custom cursor (desktop only, degrades to native on touch) -->
   <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
-  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
-
-  <!-- film grain / noise overlay -->
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"><span class="cursor-label" id="cursorLabel"></span></div>
   <div class="grain" aria-hidden="true"></div>
-
-  <!-- ember canvas easter egg burst layer -->
   <canvas class="ember-layer" id="emberLayer" aria-hidden="true"></canvas>
 
   <a class="skip-link" href="#work">Skip to work</a>
 
-  <!-- nav -->
   <header class="nav" id="nav">
-    <a href="#top" class="nav__logo" aria-label="Ronit Agarwal, home">RA</a>
+    <a href="#top" class="nav__logo" data-magnetic aria-label="Ronit Agarwal, home">RA</a>
     <nav class="nav__links" aria-label="Primary">
       <a href="#work">Work</a>
       <a href="#stats">Numbers</a>
       <a href="#awards">Awards</a>
       <a href="#about">About</a>
-      <a href="#contact" class="nav__cta">Contact</a>
+      <a href="#contact" class="nav__cta" data-magnetic>Contact</a>
     </nav>
   </header>
 
@@ -61,319 +67,276 @@
     <!-- ============ HERO ============ -->
     <section class="hero" id="hero">
       <div class="hero__inner">
-        <p class="hero__eyebrow"><span class="mono">01</span> — Bothell, WA · Class of 2028</p>
+        <p class="hero__eyebrow mono" data-reveal>BOTHELL, WA — CLASS OF 2028</p>
         <h1 class="hero__title">
-          <span class="hero__line" data-splittext>RONIT</span>
-          <span class="hero__line hero__line--accent" data-splittext>AGARWAL</span>
+          <span class="hero__line" data-decode="RONIT">RONIT</span>
+          <span class="hero__line hero__line--accent" data-decode="AGARWAL">AGARWAL</span>
         </h1>
-        <p class="hero__tagline">
-          Builder <span class="dot">·</span> AI/ML Developer <span class="dot">·</span> Shipping Real Products
-        </p>
-        <p class="hero__blurb">
-          High school student and independent builder. I ship end-to-end software, from ML
-          pipelines to deployed web apps, solo and on hackathon teams, then present it live.
-        </p>
-        <div class="hero__meta mono">
-          <span>4.0 GPA</span><i></i>
-          <span>5 shipped projects</span><i></i>
-          <span>10+ state &amp; national placements</span>
+        <p class="hero__tagline" data-reveal>I build AI-powered products that reach real users, then present them live and win.</p>
+        <div class="hero__meta mono" data-reveal>
+          <span>ML pipelines</span><i></i>
+          <span>Deployed web apps</span><i></i>
+          <span>Shipped, not slideware</span>
         </div>
       </div>
-      <a href="#work" class="hero__scroll" aria-label="Scroll to work">
-        <span class="mono">SCROLL</span>
-        <span class="hero__scroll-line" aria-hidden="true"></span>
+      <a href="#work" class="hero__scroll mono" aria-label="Scroll to work" data-magnetic>
+        <span>SCROLL</span><span class="hero__scroll-line" aria-hidden="true"></span>
       </a>
     </section>
 
-    <!-- ============ SELECTED WORK ============ -->
+    <!-- ============ TICKER ============ -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track" id="tickerTrack">
+        <span>1st · FBLA Website Coding</span><b>✦</b>
+        <span>1st · USAAI AI Website Project</span><b>✦</b>
+        <span>50–100+ users on a solo ML build</span><b>✦</b>
+        <span>2nd · FPS Community Problem Solving</span><b>✦</b>
+        <span>Dev Director · 30,000+ students</span><b>✦</b>
+        <span>3rd · TSA Video Game Design</span><b>✦</b>
+        <span>Finalist · DECA Business Finance</span><b>✦</b>
+        <span>5× FPSPI International Qualifier</span><b>✦</b>
+      </div>
+    </div>
+
+    <!-- ============ SELECTED WORK (stacking cards) ============ -->
     <section class="work" id="work">
-      <div class="section-head">
-        <span class="section-num mono">02 / WORK</span>
-        <h2 class="section-title">Selected Work</h2>
-        <p class="section-sub">Five products, shipped and used by real people. Every one owned from research through build to live demo.</p>
+      <div class="section-head" data-reveal>
+        <span class="section-num mono">01 / SELECTED WORK</span>
+        <h2 class="section-title" data-decode="Five things I shipped.">Five things I shipped.</h2>
+        <p class="section-sub">Not prototypes. Each one owned end to end, from raw data and research to a deployed product real people used, then defended live in front of judges.</p>
       </div>
 
-      <!-- 01 Wildfire (flagship) -->
-      <article class="project project--flagship" data-accent="#FF5C1F" id="p-wildfire">
-        <div class="project__visual">
-          <div class="window">
-            <div class="window__bar"><i></i><i></i><i></i><span class="mono">wildfire-risk.ai</span></div>
-            <canvas class="project__canvas" data-visual="wildfire" aria-hidden="true"></canvas>
+      <div class="stack">
+        <!-- 01 Wildfire -->
+        <article class="project" data-accent="#FF5C1F" style="--i:0">
+          <div class="project__grid">
+            <div class="project__body">
+              <span class="project__index mono">01 — Solo build · Python, Flask, scikit-learn</span>
+              <h3 class="project__title" data-fill>Wildfire Risk Prediction AI</h3>
+              <p class="project__hook">One honest question: how likely is a fire where I'm standing, right now?</p>
+              <p class="project__desc">I trained decision-tree models on NASA and Kaggle geospatial data, then built the whole thing solo: sourcing and cleaning the raw data, engineering features across temperature, humidity, wind, and vegetation, validating the model, and deploying a Flask front end that maps live risk by region. Shipped to 50 to 100+ people who actually used it.</p>
+              <div class="project__foot">
+                <div class="project__stat"><span class="big" data-count="100" data-suffix="+">0</span><span class="mono">users reached</span></div>
+                <ul class="tags mono"><li>Python</li><li>Flask</li><li>scikit-learn</li><li>Geospatial ML</li></ul>
+              </div>
+            </div>
+            <div class="project__visual" data-tilt>
+              <div class="window">
+                <div class="window__bar"><i></i><i></i><i></i><span class="mono">wildfire-risk.ai</span></div>
+                <canvas class="project__canvas" data-visual="wildfire" aria-hidden="true"></canvas>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="project__body">
-          <span class="project__index mono">01 — Solo build</span>
-          <h3 class="project__title" data-fill>Wildfire Risk Prediction AI</h3>
-          <p class="project__hook">Answers the one question a user actually has: how risky is my location right now.</p>
-          <ul class="project__points">
-            <li>Shipped to 50 to 100+ users. Decision-tree models trained on NASA and Kaggle geospatial datasets, surfacing risk across temperature, humidity, wind, and vegetation indices.</li>
-            <li>Owned the full pipeline solo: sourced and cleaned raw geospatial data, engineered features, trained and validated the model, and deployed an interactive Flask front end that maps risk by region.</li>
-          </ul>
-          <div class="project__foot">
-            <div class="project__stat"><span class="big" data-count="100" data-suffix="+">0</span><span class="mono">users reached</span></div>
-            <ul class="tags mono">
-              <li>Python</li><li>Flask</li><li>scikit-learn</li><li>HTML/CSS/JS</li>
-            </ul>
-          </div>
-        </div>
-      </article>
+        </article>
 
-      <!-- 02 MindFlow -->
-      <article class="project" data-accent="#8B5CF6" id="p-mindflow">
-        <div class="project__visual">
-          <div class="window">
-            <div class="window__bar"><i></i><i></i><i></i><span class="mono">mindflow.ai</span></div>
-            <canvas class="project__canvas" data-visual="mindflow" aria-hidden="true"></canvas>
+        <!-- 02 MindFlow -->
+        <article class="project" data-accent="#8B5CF6" style="--i:1">
+          <div class="project__grid">
+            <div class="project__body">
+              <span class="project__index mono">02 — Team build · Adaptive ML</span>
+              <h3 class="project__title" data-fill>MindFlow AI</h3>
+              <p class="project__hook">A wellness coach that learns you instead of repeating itself.</p>
+              <p class="project__desc">Most wellness apps hand everyone the same advice. MindFlow tracks each person's check-ins over time and adapts its prompts and suggestions to them. We grew it to 50+ users with adaptive insights that keep people motivated, mindful, and steady through their day.</p>
+              <div class="project__foot">
+                <div class="project__stat"><span class="big" data-count="50" data-suffix="+">0</span><span class="mono">active users</span></div>
+                <ul class="tags mono"><li>AI/ML</li><li>Personalization</li><li>Adaptive Models</li></ul>
+              </div>
+            </div>
+            <div class="project__visual" data-tilt>
+              <div class="window">
+                <div class="window__bar"><i></i><i></i><i></i><span class="mono">mindflow.ai</span></div>
+                <canvas class="project__canvas" data-visual="mindflow" aria-hidden="true"></canvas>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="project__body">
-          <span class="project__index mono">02 — Team build</span>
-          <h3 class="project__title" data-fill>MindFlow AI</h3>
-          <p class="project__hook">A wellness coach that adapts to you instead of serving generic advice.</p>
-          <ul class="project__points">
-            <li>Grew to 50+ users by personalizing daily guidance. The system tracks each user's check-ins over time and adapts its prompts and suggestions.</li>
-            <li>Adaptive machine-learning insights that help users stay motivated, mindful, productive, and emotionally balanced across their routines.</li>
-          </ul>
-          <div class="project__foot">
-            <div class="project__stat"><span class="big" data-count="50" data-suffix="+">0</span><span class="mono">active users</span></div>
-            <ul class="tags mono">
-              <li>AI/ML</li><li>Personalization</li><li>Adaptive Models</li>
-            </ul>
-          </div>
-        </div>
-      </article>
+        </article>
 
-      <!-- 03 FinQuest -->
-      <article class="project" data-accent="#10B981" id="p-finquest">
-        <div class="project__visual">
-          <div class="window">
-            <div class="window__bar"><i></i><i></i><i></i><span class="mono">finquest.ai</span></div>
-            <canvas class="project__canvas" data-visual="finquest" aria-hidden="true"></canvas>
+        <!-- 03 FinQuest -->
+        <article class="project" data-accent="#10B981" style="--i:2">
+          <div class="project__grid">
+            <div class="project__body">
+              <span class="project__index mono">03 — Team build · EdTech</span>
+              <h3 class="project__title" data-fill>FinQuest AI</h3>
+              <p class="project__hook">Teach money by letting people spend it where it can't hurt them.</p>
+              <p class="project__desc">FinQuest is a gamified financial-literacy platform that reached 50+ students. It blends adaptive learning, immersive simulations, and automated financial analysis so students practice budgeting, saving, and investing in a safe sandbox before any of it touches real money.</p>
+              <div class="project__foot">
+                <div class="project__stat"><span class="big" data-count="50" data-suffix="+">0</span><span class="mono">students taught</span></div>
+                <ul class="tags mono"><li>EdTech</li><li>Gamification</li><li>Financial Literacy</li></ul>
+              </div>
+            </div>
+            <div class="project__visual" data-tilt>
+              <div class="window">
+                <div class="window__bar"><i></i><i></i><i></i><span class="mono">finquest.ai</span></div>
+                <canvas class="project__canvas" data-visual="finquest" aria-hidden="true"></canvas>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="project__body">
-          <span class="project__index mono">03 — Team build</span>
-          <h3 class="project__title" data-fill>FinQuest AI</h3>
-          <p class="project__hook">Teaches money management by letting students practice it, risk-free.</p>
-          <ul class="project__points">
-            <li>Reached 50+ student users through a gamified financial-literacy platform combining adaptive learning, immersive simulations, and automated financial analysis.</li>
-            <li>Students practice budgeting, saving, and investing decisions in a simulation before applying the same reasoning to real money.</li>
-          </ul>
-          <div class="project__foot">
-            <div class="project__stat"><span class="big" data-count="50" data-suffix="+">0</span><span class="mono">students taught</span></div>
-            <ul class="tags mono">
-              <li>EdTech</li><li>Gamification</li><li>Financial Literacy</li>
-            </ul>
-          </div>
-        </div>
-      </article>
+        </article>
 
-      <!-- 04 BrailleVision -->
-      <article class="project" data-accent="#22D3EE" id="p-braille">
-        <div class="project__visual">
-          <div class="window">
-            <div class="window__bar"><i></i><i></i><i></i><span class="mono">braillevision</span></div>
-            <canvas class="project__canvas" data-visual="braille" aria-hidden="true"></canvas>
+        <!-- 04 BrailleVision -->
+        <article class="project" data-accent="#22D3EE" style="--i:3">
+          <div class="project__grid">
+            <div class="project__body">
+              <span class="project__index mono">04 — Team build · Computer Vision</span>
+              <h3 class="project__title" data-fill>BrailleVision</h3>
+              <p class="project__hook">Read physical Braille with the phone already in your pocket.</p>
+              <p class="project__desc">No special hardware. BrailleVision reads embossed or handwritten Braille dots straight from a camera or a photo, converts them to English text, and speaks the result aloud. We built it for real pages, machine-embossed and handwritten alike, not just clean digital samples, and put it in the hands of 50+ users.</p>
+              <div class="project__foot">
+                <div class="project__stat"><span class="big" data-count="50" data-suffix="+">0</span><span class="mono">users served</span></div>
+                <ul class="tags mono"><li>Computer Vision</li><li>Accessibility</li><li>OCR</li><li>Text-to-Speech</li></ul>
+              </div>
+            </div>
+            <div class="project__visual" data-tilt>
+              <div class="window">
+                <div class="window__bar"><i></i><i></i><i></i><span class="mono">braillevision</span></div>
+                <canvas class="project__canvas" data-visual="braille" aria-hidden="true"></canvas>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="project__body">
-          <span class="project__index mono">04 — Team build</span>
-          <h3 class="project__title" data-fill>BrailleVision</h3>
-          <p class="project__hook">Makes physical Braille readable without any specialized hardware.</p>
-          <ul class="project__points">
-            <li>For 50+ users, reads embossed or handwritten Braille dots from a phone camera or a photo, converts them to English text, and speaks the result aloud.</li>
-            <li>Built for real physical pages, both machine-embossed and handwritten dots, not just clean digital Braille samples.</li>
-          </ul>
-          <div class="project__foot">
-            <div class="project__stat"><span class="big" data-count="50" data-suffix="+">0</span><span class="mono">users served</span></div>
-            <ul class="tags mono">
-              <li>Computer Vision</li><li>Accessibility</li><li>OCR</li><li>Text-to-Speech</li>
-            </ul>
-          </div>
-        </div>
-      </article>
+        </article>
 
-      <!-- 05 Prosperity Empire -->
-      <article class="project" data-accent="#F59E0B" id="p-prosperity">
-        <div class="project__visual">
-          <div class="window">
-            <div class="window__bar"><i></i><i></i><i></i><span class="mono">prosperity-empire</span></div>
-            <canvas class="project__canvas" data-visual="prosperity" aria-hidden="true"></canvas>
+        <!-- 05 Prosperity Empire -->
+        <article class="project" data-accent="#F59E0B" style="--i:4">
+          <div class="project__grid">
+            <div class="project__body">
+              <span class="project__index mono">05 — Team build · Game Design</span>
+              <h3 class="project__title" data-fill>Prosperity Empire</h3>
+              <p class="project__hook">You don't read the economics lesson. You play it.</p>
+              <p class="project__desc">A browser-based financial-civilization idle game for 50+ players, where progress only comes from balancing production, trade, and reinvestment. The core loops are designed so players internalize real economic tradeoffs by feel, through play, instead of being lectured.</p>
+              <div class="project__foot">
+                <div class="project__stat"><span class="big" data-count="50" data-suffix="+">0</span><span class="mono">players</span></div>
+                <ul class="tags mono"><li>Game Design</li><li>Economics</li><li>Browser Game</li></ul>
+              </div>
+            </div>
+            <div class="project__visual" data-tilt>
+              <div class="window">
+                <div class="window__bar"><i></i><i></i><i></i><span class="mono">prosperity-empire</span></div>
+                <canvas class="project__canvas" data-visual="prosperity" aria-hidden="true"></canvas>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="project__body">
-          <span class="project__index mono">05 — Team build</span>
-          <h3 class="project__title" data-fill>Prosperity Empire</h3>
-          <p class="project__hook">Turns economic strategy into something you learn by playing.</p>
-          <ul class="project__points">
-            <li>A browser-based financial-civilization idle game for 50+ players, where progress depends on balancing production, trade, and reinvestment.</li>
-            <li>Core game loops designed so players internalize economic tradeoffs by playing, not by reading a lesson.</li>
-          </ul>
-          <div class="project__foot">
-            <div class="project__stat"><span class="big" data-count="50" data-suffix="+">0</span><span class="mono">players</span></div>
-            <ul class="tags mono">
-              <li>Game Design</li><li>Economics</li><li>Browser Game</li>
-            </ul>
-          </div>
-        </div>
-      </article>
+        </article>
+      </div>
     </section>
 
-    <!-- ============ NUMBERS STRIP ============ -->
+    <!-- ============ NUMBERS ============ -->
     <section class="stats" id="stats">
+      <div class="section-head" data-reveal>
+        <span class="section-num mono">02 / BY THE NUMBERS</span>
+      </div>
       <div class="stats__grid">
-        <div class="stat"><span class="stat__num" data-count="4" data-decimals="1">0</span><span class="stat__label mono">GPA</span></div>
-        <div class="stat"><span class="stat__num" data-count="5">0</span><span class="stat__label mono">Shipped projects</span></div>
-        <div class="stat"><span class="stat__num" data-count="250" data-suffix="+">0</span><span class="stat__label mono">Users reached</span></div>
-        <div class="stat"><span class="stat__num" data-count="10" data-suffix="+">0</span><span class="stat__label mono">State &amp; national placements</span></div>
-        <div class="stat"><span class="stat__num" data-count="30000" data-suffix="+" data-comma="1">0</span><span class="stat__label mono">Students in the program I help lead</span></div>
+        <div class="stat" data-reveal><span class="stat__num" data-count="4" data-decimals="1">0</span><span class="stat__label mono">GPA, unweighted</span></div>
+        <div class="stat" data-reveal data-reveal-delay="1"><span class="stat__num" data-count="5">0</span><span class="stat__label mono">Products shipped</span></div>
+        <div class="stat" data-reveal data-reveal-delay="2"><span class="stat__num" data-count="250" data-suffix="+">0</span><span class="stat__label mono">Users reached</span></div>
+        <div class="stat" data-reveal data-reveal-delay="1"><span class="stat__num" data-count="10" data-suffix="+">0</span><span class="stat__label mono">State &amp; national placements</span></div>
+        <div class="stat" data-reveal data-reveal-delay="2"><span class="stat__num" data-count="30000" data-suffix="+" data-comma="1">0</span><span class="stat__label mono">Students in the program I help lead</span></div>
       </div>
     </section>
 
     <!-- ============ AWARDS ============ -->
     <section class="awards" id="awards">
-      <div class="section-head">
-        <span class="section-num mono">03 / AWARDS</span>
-        <h2 class="section-title">Placements &amp; Recognition</h2>
-        <p class="section-sub">State and national results across technology, data, and business competitions.</p>
+      <div class="section-head" data-reveal>
+        <span class="section-num mono">03 / RECEIPTS</span>
+        <h2 class="section-title" data-decode="The wins, on record.">The wins, on record.</h2>
+        <p class="section-sub">State and national results across technology, data, and business. Same person, three different arenas.</p>
       </div>
-
-      <!-- marquee row of the headline wins -->
-      <div class="marquee" aria-hidden="true">
-        <div class="marquee__track">
-          <span>1st · FBLA Website Coding</span><span class="marquee__dot">✦</span>
-          <span>1st · USAAI AI Website Project</span><span class="marquee__dot">✦</span>
-          <span>2nd · FPS Community Problem Solving</span><span class="marquee__dot">✦</span>
-          <span>3rd · TSA Video Game Design</span><span class="marquee__dot">✦</span>
-          <span>Finalist · DECA Business Finance</span><span class="marquee__dot">✦</span>
-          <span>5× FPSPI International Qualifier</span><span class="marquee__dot">✦</span>
-          <!-- duplicated for seamless loop -->
-          <span>1st · FBLA Website Coding</span><span class="marquee__dot">✦</span>
-          <span>1st · USAAI AI Website Project</span><span class="marquee__dot">✦</span>
-          <span>2nd · FPS Community Problem Solving</span><span class="marquee__dot">✦</span>
-          <span>3rd · TSA Video Game Design</span><span class="marquee__dot">✦</span>
-          <span>Finalist · DECA Business Finance</span><span class="marquee__dot">✦</span>
-          <span>5× FPSPI International Qualifier</span><span class="marquee__dot">✦</span>
-        </div>
-      </div>
-
       <ol class="awards__list">
-        <li class="award" data-rank="gold"><span class="award__place mono">1st</span><span class="award__title">Website Coding &amp; Development</span><span class="award__org">Washington FBLA SBLC</span><span class="award__date mono">Apr 2026</span></li>
-        <li class="award" data-rank="gold"><span class="award__place mono">1st</span><span class="award__title">AI Website Project</span><span class="award__org">USAAI National Competition Series</span><span class="award__date mono">Dec 2025</span></li>
-        <li class="award" data-rank="silver"><span class="award__place mono">2nd</span><span class="award__title">Community Problem Solving, Senior Division</span><span class="award__org">Washington FPS State</span><span class="award__date mono">Mar 2026</span></li>
-        <li class="award" data-rank="bronze"><span class="award__place mono">3rd</span><span class="award__title">Video Game Design</span><span class="award__org">Washington TSA State</span><span class="award__date mono">Apr 2026</span></li>
-        <li class="award" data-rank="bronze"><span class="award__place mono">3rd</span><span class="award__title">Team, Math League WA State Championships</span><span class="award__org">WA High School Championships</span><span class="award__date mono">Apr 2025</span></li>
-        <li class="award"><span class="award__place mono">6th</span><span class="award__title">Data Science &amp; Analytics</span><span class="award__org">Washington TSA State</span><span class="award__date mono">Apr 2026</span></li>
-        <li class="award"><span class="award__place mono">Finalist</span><span class="award__title">Business Finance Series</span><span class="award__org">Washington DECA SCDC</span><span class="award__date mono">Feb 2026</span></li>
-        <li class="award"><span class="award__place mono">Finalist</span><span class="award__title">USAII Hackathon</span><span class="award__org">USAII</span><span class="award__date mono">Jun 2026</span></li>
-        <li class="award"><span class="award__place mono">5×</span><span class="award__title">FPSPI International Conference Qualifier</span><span class="award__org">Future Problem Solving</span><span class="award__date mono">2022–2026</span></li>
-        <li class="award"><span class="award__place mono">BAA</span><span class="award__title">Business Achievement Awards: Contributor, Leader, Advocate</span><span class="award__org">FBLA</span><span class="award__date mono">—</span></li>
+        <li class="award" data-rank="gold" data-reveal><span class="award__place mono">1st</span><span class="award__title">Website Coding &amp; Development</span><span class="award__org">Washington FBLA SBLC</span><span class="award__date mono">Apr 2026</span></li>
+        <li class="award" data-rank="gold" data-reveal><span class="award__place mono">1st</span><span class="award__title">AI Website Project</span><span class="award__org">USAAI National Competition Series</span><span class="award__date mono">Dec 2025</span></li>
+        <li class="award" data-rank="silver" data-reveal><span class="award__place mono">2nd</span><span class="award__title">Community Problem Solving, Senior Division</span><span class="award__org">Washington FPS State</span><span class="award__date mono">Mar 2026</span></li>
+        <li class="award" data-rank="bronze" data-reveal><span class="award__place mono">3rd</span><span class="award__title">Video Game Design</span><span class="award__org">Washington TSA State</span><span class="award__date mono">Apr 2026</span></li>
+        <li class="award" data-rank="bronze" data-reveal><span class="award__place mono">3rd</span><span class="award__title">Math League, WA State Championships (Team)</span><span class="award__org">WA High School Championships</span><span class="award__date mono">Apr 2025</span></li>
+        <li class="award" data-reveal><span class="award__place mono">6th</span><span class="award__title">Data Science &amp; Analytics</span><span class="award__org">Washington TSA State</span><span class="award__date mono">Apr 2026</span></li>
+        <li class="award" data-reveal><span class="award__place mono">Finalist</span><span class="award__title">Business Finance Series</span><span class="award__org">Washington DECA SCDC</span><span class="award__date mono">Feb 2026</span></li>
+        <li class="award" data-reveal><span class="award__place mono">Finalist</span><span class="award__title">USAII Hackathon</span><span class="award__org">USAII</span><span class="award__date mono">Jun 2026</span></li>
+        <li class="award" data-reveal><span class="award__place mono">5×</span><span class="award__title">FPSPI International Conference Qualifier</span><span class="award__org">Future Problem Solving</span><span class="award__date mono">2022–2026</span></li>
       </ol>
     </section>
 
     <!-- ============ LEADERSHIP ============ -->
     <section class="lead" id="lead">
-      <div class="section-head">
-        <span class="section-num mono">04 / IMPACT</span>
-        <h2 class="section-title">Leadership &amp; Impact</h2>
-        <p class="section-sub">Where I combine technical and financial responsibility with real people to serve.</p>
+      <div class="section-head" data-reveal>
+        <span class="section-num mono">04 / OFF THE KEYBOARD</span>
+        <h2 class="section-title" data-decode="Leadership &amp; impact.">Leadership &amp; impact.</h2>
+        <p class="section-sub">Where I put the same ownership to work on people and money, not just code.</p>
       </div>
       <div class="lead__grid">
-        <article class="card card--wide">
-          <h3>FPSPI — Development Director</h3>
-          <span class="card__role mono">International Student Advisory Council · Sep 2021 – Present</span>
-          <p>Own development initiatives for a global academic program with 30,000+ annual student competitors and 250,000+ participants over the past decade. Contributing writer on the official Guide to FPS, and a five-time International Conference qualifier.</p>
+        <article class="card card--wide" data-reveal data-tilt>
+          <h3>Development Director, FPSPI</h3>
+          <span class="card__role mono">International Student Advisory Council · since Sep 2021</span>
+          <p>I own development initiatives for a global academic program with 30,000+ students competing every year and 250,000+ over the past decade. I'm a contributing writer on the official Guide to FPS and a five-time International Conference qualifier, so the council's work stays grounded in what competitors actually experience.</p>
         </article>
-        <article class="card">
-          <h3>NCHS UNICEF — Treasurer</h3>
-          <span class="card__role mono">Sep 2025 – Present</span>
-          <p>Secured a nonprofit partnership with Mary's Place and ran a 10-day winter drive: 50 volunteers, 160+ items (~$1,300 value), 54 care kits. Built the annual ASB budget to a $400 surplus.</p>
+        <article class="card" data-reveal data-tilt>
+          <h3>Treasurer, NCHS UNICEF</h3>
+          <span class="card__role mono">since Sep 2025</span>
+          <p>Landed a partnership with Mary's Place and ran a 10-day winter drive: 50 volunteers, 160+ items worth about $1,300, 54 care kits. Built the annual budget to a $400 surplus.</p>
         </article>
-        <article class="card">
-          <h3>NCHS Math Club — VP of Competition</h3>
+        <article class="card" data-reveal data-tilt>
+          <h3>VP of Competition, Math Club</h3>
           <span class="card__role mono">prev. Event Chair</span>
-          <p>Grew membership 22% and run competitions including AMC and NC³, coordinating logistics and the year's calendar with faculty advisors.</p>
+          <p>Grew membership 22% and run the AMC and NC³ competitions, owning logistics and the calendar with faculty advisors.</p>
         </article>
-        <article class="card">
-          <h3>Mu Alpha Theta — Volunteer Chair</h3>
+        <article class="card" data-reveal data-tilt>
+          <h3>Volunteer Chair, Mu Alpha Theta</h3>
           <span class="card__role mono">Mathematics Honor Society</span>
-          <p>Lead 40+ tutors supporting 120+ middle schoolers for MathCounts and MOEMS. Chapter earned the national Rubin Award for service.</p>
+          <p>I lead 40+ tutors supporting 120+ middle schoolers for MathCounts and MOEMS. The chapter earned the national Rubin Award for service.</p>
         </article>
-        <article class="card">
-          <h3>NCHS Chess Club — Event Manager</h3>
-          <span class="card__role mono">prev. Culture Manager &amp; Newsletter Editor</span>
+        <article class="card" data-reveal data-tilt>
+          <h3>Event Manager, Chess Club</h3>
+          <span class="card__role mono">prev. Culture Manager &amp; Editor</span>
           <p>Grew membership 50%, helped run the school's first chess tournament, and edited the club newsletter.</p>
         </article>
-        <article class="card card--wide">
-          <h3>Tutoring &amp; Coaching</h3>
+        <article class="card card--wide" data-reveal data-tilt>
+          <h3>Teaching &amp; coaching</h3>
           <span class="card__role mono">Kumon · Schoolhouse.world · PBL Cricket Academy</span>
-          <p>One-on-one instruction from phonics through calculus at Kumon, free global math and history tutoring on Schoolhouse.world, and youth cricket coaching on batting, bowling, and strategy.</p>
+          <p>One-on-one instruction from phonics through calculus at Kumon, free math and history tutoring worldwide on Schoolhouse.world, and youth cricket coaching on batting, bowling, and strategy. Different rooms, same job: make a hard thing click for someone else.</p>
         </article>
       </div>
     </section>
 
     <!-- ============ ABOUT ============ -->
     <section class="about" id="about">
-      <div class="section-head">
+      <div class="section-head" data-reveal>
         <span class="section-num mono">05 / ABOUT</span>
-        <h2 class="section-title">About</h2>
+        <h2 class="section-title" data-decode="Who's behind it.">Who's behind it.</h2>
       </div>
       <div class="about__grid">
-        <div class="about__bio">
-          <p>I'm a builder who likes owning a problem end to end. I have a 4.0 GPA and a record of state and national placements across technology, data, and business, and I ship real software: ML pipelines, deployed web apps, and games that people actually use.</p>
-          <p>My coursework is deliberately split across computer science, applied math, and business, the same combination behind every project above: AP Calculus AB, AP Computer Science A, AP Physics 1, AP Seminar, AP CSP, Finance, and Intro to Marketing.</p>
+        <div class="about__bio" data-reveal>
+          <p>I'm a builder who likes owning the whole problem. 4.0 GPA, a stack of state and national placements, and a habit of shipping real software: ML pipelines, deployed web apps, and games people actually open.</p>
+          <p>My classes are split across CS, applied math, and business on purpose, because that's the exact mix behind everything above: AP Calculus AB, AP Computer Science A, AP Physics 1, AP Seminar, AP CSP, Finance, and Intro to Marketing.</p>
         </div>
-        <div class="about__skills">
-          <div class="skillrow">
-            <span class="skillrow__label mono">Languages</span>
-            <ul class="tags mono"><li>Python</li><li>Java</li><li>JavaScript</li><li>HTML/CSS</li></ul>
-          </div>
-          <div class="skillrow">
-            <span class="skillrow__label mono">Domains</span>
-            <ul class="tags mono"><li>Machine Learning</li><li>Data Analysis</li><li>Web Development</li><li>Financial Analysis</li></ul>
-          </div>
-          <div class="skillrow">
-            <span class="skillrow__label mono">Tools</span>
-            <ul class="tags mono"><li>Flask</li><li>Git/GitHub</li><li>GameMaker Studio 2</li><li>Kaggle</li></ul>
-          </div>
-          <div class="skillrow">
-            <span class="skillrow__label mono">Spoken</span>
-            <ul class="tags mono"><li>English (native)</li><li>Hindi (native)</li><li>Spanish</li><li>German</li></ul>
-          </div>
+        <div class="about__skills" data-reveal data-reveal-delay="1">
+          <div class="skillrow"><span class="skillrow__label mono">Languages</span><ul class="tags mono"><li>Python</li><li>Java</li><li>JavaScript</li><li>HTML/CSS</li></ul></div>
+          <div class="skillrow"><span class="skillrow__label mono">Domains</span><ul class="tags mono"><li>Machine Learning</li><li>Data Analysis</li><li>Web Development</li><li>Financial Analysis</li></ul></div>
+          <div class="skillrow"><span class="skillrow__label mono">Tools</span><ul class="tags mono"><li>Flask</li><li>Git/GitHub</li><li>GameMaker Studio 2</li><li>Kaggle</li></ul></div>
+          <div class="skillrow"><span class="skillrow__label mono">Spoken</span><ul class="tags mono"><li>English (native)</li><li>Hindi (native)</li><li>Spanish</li><li>German</li></ul></div>
         </div>
       </div>
     </section>
 
     <!-- ============ CONTACT ============ -->
     <section class="contact" id="contact">
-      <span class="section-num mono">06 / CONTACT</span>
+      <span class="section-num mono" data-reveal>06 / CONTACT</span>
       <h2 class="contact__title" data-fill>Let's build something.</h2>
-      <p class="contact__sub">Open to internships, hackathon teams, and interesting problems. The fastest way to reach me is email.</p>
-      <div class="contact__links">
-        <a class="contact__link" href="mailto:ronit_agarwal@outlook.com">
-          <span class="mono">EMAIL</span><span>ronit_agarwal@outlook.com</span>
-        </a>
-        <a class="contact__link" href="https://github.com/BoyTiger-1" target="_blank" rel="noopener">
-          <span class="mono">GITHUB</span><span>github.com/BoyTiger-1</span>
-        </a>
-        <a class="contact__link" href="https://www.linkedin.com/in/ronit-agarwal-70129b349" target="_blank" rel="noopener">
-          <span class="mono">LINKEDIN</span><span>in/ronit-agarwal</span>
-        </a>
+      <p class="contact__sub" data-reveal>Open to internships, hackathon teams, and problems worth losing sleep over. Email is the fastest way in.</p>
+      <div class="contact__links" data-reveal data-reveal-delay="1">
+        <a class="contact__link" href="mailto:ronit_agarwal@outlook.com" data-magnetic><span class="mono">EMAIL</span><span>ronit_agarwal@outlook.com</span></a>
+        <a class="contact__link" href="https://github.com/BoyTiger-1" target="_blank" rel="noopener" data-magnetic><span class="mono">GITHUB</span><span>github.com/BoyTiger-1</span></a>
+        <a class="contact__link" href="https://www.linkedin.com/in/ronit-agarwal-70129b349" target="_blank" rel="noopener" data-magnetic><span class="mono">LINKEDIN</span><span>in/ronit-agarwal</span></a>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <span class="mono">© 2026 Ronit Agarwal · Bothell, WA</span>
-    <!-- braille reads "ronit" — hover to translate, a nod to BrailleVision -->
     <span class="footer__braille mono" title="ronit" data-translate="ronit" tabindex="0">⠗⠕⠝⠊⠞</span>
-    <span class="mono">Built from scratch, no template.</span>
+    <span class="mono">Built from scratch. No template.</span>
   </footer>
 
-  <!-- libs: gsap for scroll motion, lenis for smooth scroll (both via cdn) -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="js/hero-gl.js"></script>
   <script src="js/visuals.js"></script>
   <script src="js/main.js"></script>
 </body>
