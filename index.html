@@ -25,24 +25,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 
-  <!-- if js never runs, still show all content readably -->
   <noscript><style>#intro{display:none!important}[data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
-  <!-- ============ CINEMATIC INTRO ============ -->
+  <!-- short, clean intro: name + progress, then fades away -->
   <div class="intro" id="intro" aria-hidden="true">
-    <canvas class="intro__canvas" id="introCanvas"></canvas>
     <div class="intro__center">
-      <div class="intro__name" id="introName">RONIT AGARWAL</div>
+      <div class="intro__name">RONIT AGARWAL</div>
       <div class="intro__bar"><span id="introBarFill"></span></div>
       <div class="intro__pct mono"><span id="introPct">0</span>%</div>
     </div>
   </div>
 
-  <!-- webgl ember hero, sits behind everything -->
-  <canvas class="hero-gl" id="heroGl" aria-hidden="true"></canvas>
-
-  <!-- overlays -->
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
   <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
   <div class="cursor-ring" id="cursorRing" aria-hidden="true"><span class="cursor-label" id="cursorLabel"></span></div>
@@ -66,11 +60,12 @@
 
     <!-- ============ HERO ============ -->
     <section class="hero" id="hero">
+      <div class="hero__glow" aria-hidden="true"></div>
       <div class="hero__inner">
         <p class="hero__eyebrow mono" data-reveal>BOTHELL, WA — CLASS OF 2028</p>
         <h1 class="hero__title">
-          <span class="hero__line" data-decode="RONIT">RONIT</span>
-          <span class="hero__line hero__line--accent" data-decode="AGARWAL">AGARWAL</span>
+          <span class="hero__line">RONIT</span>
+          <span class="hero__line hero__line--accent">AGARWAL</span>
         </h1>
         <p class="hero__tagline" data-reveal>I build AI-powered products that reach real users, then present them live and win.</p>
         <div class="hero__meta mono" data-reveal>
@@ -102,12 +97,11 @@
     <section class="work" id="work">
       <div class="section-head" data-reveal>
         <span class="section-num mono">01 / SELECTED WORK</span>
-        <h2 class="section-title" data-decode="Five things I shipped.">Five things I shipped.</h2>
+        <h2 class="section-title">Five things I shipped.</h2>
         <p class="section-sub">Not prototypes. Each one owned end to end, from raw data and research to a deployed product real people used, then defended live in front of judges.</p>
       </div>
 
       <div class="stack">
-        <!-- 01 Wildfire -->
         <article class="project" data-accent="#FF5C1F" style="--i:0">
           <div class="project__grid">
             <div class="project__body">
@@ -129,7 +123,6 @@
           </div>
         </article>
 
-        <!-- 02 MindFlow -->
         <article class="project" data-accent="#8B5CF6" style="--i:1">
           <div class="project__grid">
             <div class="project__body">
@@ -151,7 +144,6 @@
           </div>
         </article>
 
-        <!-- 03 FinQuest -->
         <article class="project" data-accent="#10B981" style="--i:2">
           <div class="project__grid">
             <div class="project__body">
@@ -173,7 +165,6 @@
           </div>
         </article>
 
-        <!-- 04 BrailleVision -->
         <article class="project" data-accent="#22D3EE" style="--i:3">
           <div class="project__grid">
             <div class="project__body">
@@ -195,7 +186,6 @@
           </div>
         </article>
 
-        <!-- 05 Prosperity Empire -->
         <article class="project" data-accent="#F59E0B" style="--i:4">
           <div class="project__grid">
             <div class="project__body">
@@ -221,15 +211,31 @@
 
     <!-- ============ NUMBERS ============ -->
     <section class="stats" id="stats">
-      <div class="section-head" data-reveal>
+      <div class="stats__head" data-reveal>
         <span class="section-num mono">02 / BY THE NUMBERS</span>
+        <p class="stats__intro">The short version, in five figures.</p>
       </div>
-      <div class="stats__grid">
-        <div class="stat" data-reveal><span class="stat__num" data-count="4" data-decimals="1">0</span><span class="stat__label mono">GPA, unweighted</span></div>
-        <div class="stat" data-reveal data-reveal-delay="1"><span class="stat__num" data-count="5">0</span><span class="stat__label mono">Products shipped</span></div>
-        <div class="stat" data-reveal data-reveal-delay="2"><span class="stat__num" data-count="250" data-suffix="+">0</span><span class="stat__label mono">Users reached</span></div>
-        <div class="stat" data-reveal data-reveal-delay="1"><span class="stat__num" data-count="10" data-suffix="+">0</span><span class="stat__label mono">State &amp; national placements</span></div>
-        <div class="stat" data-reveal data-reveal-delay="2"><span class="stat__num" data-count="30000" data-suffix="+" data-comma="1">0</span><span class="stat__label mono">Students in the program I help lead</span></div>
+      <div class="stats__row">
+        <div class="stat" data-reveal>
+          <span class="stat__num" data-count="4" data-decimals="1">0</span>
+          <span class="stat__label">GPA, unweighted</span>
+        </div>
+        <div class="stat" data-reveal data-reveal-delay="1">
+          <span class="stat__num" data-count="5">0</span>
+          <span class="stat__label">Products shipped</span>
+        </div>
+        <div class="stat" data-reveal data-reveal-delay="2">
+          <span class="stat__num" data-count="250" data-suffix="+">0</span>
+          <span class="stat__label">Users reached</span>
+        </div>
+        <div class="stat" data-reveal data-reveal-delay="1">
+          <span class="stat__num" data-count="10" data-suffix="+">0</span>
+          <span class="stat__label">State &amp; national placements</span>
+        </div>
+        <div class="stat stat--feature" data-reveal data-reveal-delay="2">
+          <span class="stat__num" data-count="30000" data-suffix="+" data-comma="1">0</span>
+          <span class="stat__label">Students in the program I help lead</span>
+        </div>
       </div>
     </section>
 
@@ -237,19 +243,19 @@
     <section class="awards" id="awards">
       <div class="section-head" data-reveal>
         <span class="section-num mono">03 / RECEIPTS</span>
-        <h2 class="section-title" data-decode="The wins, on record.">The wins, on record.</h2>
+        <h2 class="section-title">The wins, on record.</h2>
         <p class="section-sub">State and national results across technology, data, and business. Same person, three different arenas.</p>
       </div>
       <ol class="awards__list">
-        <li class="award" data-rank="gold" data-reveal><span class="award__place mono">1st</span><span class="award__title">Website Coding &amp; Development</span><span class="award__org">Washington FBLA SBLC</span><span class="award__date mono">Apr 2026</span></li>
-        <li class="award" data-rank="gold" data-reveal><span class="award__place mono">1st</span><span class="award__title">AI Website Project</span><span class="award__org">USAAI National Competition Series</span><span class="award__date mono">Dec 2025</span></li>
-        <li class="award" data-rank="silver" data-reveal><span class="award__place mono">2nd</span><span class="award__title">Community Problem Solving, Senior Division</span><span class="award__org">Washington FPS State</span><span class="award__date mono">Mar 2026</span></li>
-        <li class="award" data-rank="bronze" data-reveal><span class="award__place mono">3rd</span><span class="award__title">Video Game Design</span><span class="award__org">Washington TSA State</span><span class="award__date mono">Apr 2026</span></li>
-        <li class="award" data-rank="bronze" data-reveal><span class="award__place mono">3rd</span><span class="award__title">Math League, WA State Championships (Team)</span><span class="award__org">WA High School Championships</span><span class="award__date mono">Apr 2025</span></li>
-        <li class="award" data-reveal><span class="award__place mono">6th</span><span class="award__title">Data Science &amp; Analytics</span><span class="award__org">Washington TSA State</span><span class="award__date mono">Apr 2026</span></li>
-        <li class="award" data-reveal><span class="award__place mono">Finalist</span><span class="award__title">Business Finance Series</span><span class="award__org">Washington DECA SCDC</span><span class="award__date mono">Feb 2026</span></li>
-        <li class="award" data-reveal><span class="award__place mono">Finalist</span><span class="award__title">USAII Hackathon</span><span class="award__org">USAII</span><span class="award__date mono">Jun 2026</span></li>
-        <li class="award" data-reveal><span class="award__place mono">5×</span><span class="award__title">FPSPI International Conference Qualifier</span><span class="award__org">Future Problem Solving</span><span class="award__date mono">2022–2026</span></li>
+        <li class="award" data-rank="gold" data-reveal><span class="award__idx mono">01</span><span class="award__place mono">1st</span><span class="award__title">Website Coding &amp; Development</span><span class="award__org">Washington FBLA SBLC</span><span class="award__date mono">Apr 2026</span><span class="award__go" aria-hidden="true">→</span></li>
+        <li class="award" data-rank="gold" data-reveal><span class="award__idx mono">02</span><span class="award__place mono">1st</span><span class="award__title">AI Website Project</span><span class="award__org">USAAI National Competition Series</span><span class="award__date mono">Dec 2025</span><span class="award__go" aria-hidden="true">→</span></li>
+        <li class="award" data-rank="silver" data-reveal><span class="award__idx mono">03</span><span class="award__place mono">2nd</span><span class="award__title">Community Problem Solving, Senior Division</span><span class="award__org">Washington FPS State</span><span class="award__date mono">Mar 2026</span><span class="award__go" aria-hidden="true">→</span></li>
+        <li class="award" data-rank="bronze" data-reveal><span class="award__idx mono">04</span><span class="award__place mono">3rd</span><span class="award__title">Video Game Design</span><span class="award__org">Washington TSA State</span><span class="award__date mono">Apr 2026</span><span class="award__go" aria-hidden="true">→</span></li>
+        <li class="award" data-rank="bronze" data-reveal><span class="award__idx mono">05</span><span class="award__place mono">3rd</span><span class="award__title">Math League, WA State Championships (Team)</span><span class="award__org">WA High School Championships</span><span class="award__date mono">Apr 2025</span><span class="award__go" aria-hidden="true">→</span></li>
+        <li class="award" data-reveal><span class="award__idx mono">06</span><span class="award__place mono">6th</span><span class="award__title">Data Science &amp; Analytics</span><span class="award__org">Washington TSA State</span><span class="award__date mono">Apr 2026</span><span class="award__go" aria-hidden="true">→</span></li>
+        <li class="award" data-reveal><span class="award__idx mono">07</span><span class="award__place mono">Finalist</span><span class="award__title">Business Finance Series</span><span class="award__org">Washington DECA SCDC</span><span class="award__date mono">Feb 2026</span><span class="award__go" aria-hidden="true">→</span></li>
+        <li class="award" data-reveal><span class="award__idx mono">08</span><span class="award__place mono">Finalist</span><span class="award__title">USAII Hackathon</span><span class="award__org">USAII</span><span class="award__date mono">Jun 2026</span><span class="award__go" aria-hidden="true">→</span></li>
+        <li class="award" data-reveal><span class="award__idx mono">09</span><span class="award__place mono">5×</span><span class="award__title">FPSPI International Conference Qualifier</span><span class="award__org">Future Problem Solving</span><span class="award__date mono">2022–2026</span><span class="award__go" aria-hidden="true">→</span></li>
       </ol>
     </section>
 
@@ -257,36 +263,42 @@
     <section class="lead" id="lead">
       <div class="section-head" data-reveal>
         <span class="section-num mono">04 / OFF THE KEYBOARD</span>
-        <h2 class="section-title" data-decode="Leadership &amp; impact.">Leadership &amp; impact.</h2>
+        <h2 class="section-title">Leadership &amp; impact.</h2>
         <p class="section-sub">Where I put the same ownership to work on people and money, not just code.</p>
       </div>
       <div class="lead__grid">
-        <article class="card card--wide" data-reveal data-tilt>
+        <article class="card card--wide" data-reveal>
+          <div class="card__metric"><span class="card__metric-num">30,000+</span><span class="card__metric-label mono">students in the program</span></div>
           <h3>Development Director, FPSPI</h3>
           <span class="card__role mono">International Student Advisory Council · since Sep 2021</span>
           <p>I own development initiatives for a global academic program with 30,000+ students competing every year and 250,000+ over the past decade. I'm a contributing writer on the official Guide to FPS and a five-time International Conference qualifier, so the council's work stays grounded in what competitors actually experience.</p>
         </article>
-        <article class="card" data-reveal data-tilt>
+        <article class="card" data-reveal>
+          <div class="card__metric"><span class="card__metric-num">54</span><span class="card__metric-label mono">care kits assembled</span></div>
           <h3>Treasurer, NCHS UNICEF</h3>
           <span class="card__role mono">since Sep 2025</span>
           <p>Landed a partnership with Mary's Place and ran a 10-day winter drive: 50 volunteers, 160+ items worth about $1,300, 54 care kits. Built the annual budget to a $400 surplus.</p>
         </article>
-        <article class="card" data-reveal data-tilt>
+        <article class="card" data-reveal>
+          <div class="card__metric"><span class="card__metric-num">+22%</span><span class="card__metric-label mono">membership growth</span></div>
           <h3>VP of Competition, Math Club</h3>
           <span class="card__role mono">prev. Event Chair</span>
           <p>Grew membership 22% and run the AMC and NC³ competitions, owning logistics and the calendar with faculty advisors.</p>
         </article>
-        <article class="card" data-reveal data-tilt>
+        <article class="card" data-reveal>
+          <div class="card__metric"><span class="card__metric-num">120+</span><span class="card__metric-label mono">students supported</span></div>
           <h3>Volunteer Chair, Mu Alpha Theta</h3>
           <span class="card__role mono">Mathematics Honor Society</span>
           <p>I lead 40+ tutors supporting 120+ middle schoolers for MathCounts and MOEMS. The chapter earned the national Rubin Award for service.</p>
         </article>
-        <article class="card" data-reveal data-tilt>
+        <article class="card" data-reveal>
+          <div class="card__metric"><span class="card__metric-num">+50%</span><span class="card__metric-label mono">membership growth</span></div>
           <h3>Event Manager, Chess Club</h3>
           <span class="card__role mono">prev. Culture Manager &amp; Editor</span>
           <p>Grew membership 50%, helped run the school's first chess tournament, and edited the club newsletter.</p>
         </article>
-        <article class="card card--wide" data-reveal data-tilt>
+        <article class="card card--wide" data-reveal>
+          <div class="card__metric"><span class="card__metric-num">3</span><span class="card__metric-label mono">programs, one job</span></div>
           <h3>Teaching &amp; coaching</h3>
           <span class="card__role mono">Kumon · Schoolhouse.world · PBL Cricket Academy</span>
           <p>One-on-one instruction from phonics through calculus at Kumon, free math and history tutoring worldwide on Schoolhouse.world, and youth cricket coaching on batting, bowling, and strategy. Different rooms, same job: make a hard thing click for someone else.</p>
@@ -298,7 +310,7 @@
     <section class="about" id="about">
       <div class="section-head" data-reveal>
         <span class="section-num mono">05 / ABOUT</span>
-        <h2 class="section-title" data-decode="Who's behind it.">Who's behind it.</h2>
+        <h2 class="section-title">Who's behind it.</h2>
       </div>
       <div class="about__grid">
         <div class="about__bio" data-reveal>
@@ -336,7 +348,6 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script src="js/hero-gl.js"></script>
   <script src="js/visuals.js"></script>
   <script src="js/main.js"></script>
 </body>

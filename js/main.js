@@ -1,5 +1,5 @@
-/* site behavior. intro sequence, decode text, stacking depth, 3d tilt,
-   magnetic buttons, labeled cursor, canvas lifecycle, count-ups, nav.
+/* site behavior. clean intro, smooth reveals, light stacking depth,
+   3d tilt, magnetic buttons, labeled cursor, throttled canvas visuals.
    anything that moves checks prefers-reduced-motion first. */
 
 (function () {
@@ -21,105 +21,49 @@
     setupSmoothScroll();
     setupReveals();
     setupStacking();
-    setupIntro(startHero); // intro calls startHero when it finishes (or immediately)
+    setupIntro(startHero);
   });
 
-  /* ---------- intro: ember particles + progress + name decode ---------- */
+  /* ---------- intro: name + a quick progress bar, then fade out ---------- */
   function setupIntro(done) {
     const intro = document.getElementById('intro');
     if (!intro || reduce) { if (intro) intro.remove(); done(); return; }
-
     document.body.classList.add('intro-lock');
-    const canvas = document.getElementById('introCanvas');
-    const ctx = canvas.getContext('2d');
-    const nameEl = document.getElementById('introName');
     const barEl = document.getElementById('introBarFill');
     const pctEl = document.getElementById('introPct');
-    const target = nameEl.textContent;
 
-    let w, h, dpr;
-    const rs = () => { dpr = Math.min(devicePixelRatio || 1, 2); w = innerWidth; h = innerHeight; canvas.width = w*dpr; canvas.height = h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); };
-    rs(); addEventListener('resize', rs);
-
-    const parts = Array.from({ length: 70 }, () => ({ x: Math.random()*innerWidth, y: innerHeight + Math.random()*160, vy: .6 + Math.random()*1.8, r: .6 + Math.random()*2.4, a: .2 + Math.random()*.5 }));
-    const cols = ['#FF5C1F', '#FFB020', '#ff8a3d'];
-    let raf, running = true;
-    (function frame() {
-      ctx.clearRect(0,0,w,h);
-      parts.forEach((p,i) => { p.y -= p.vy; p.x += Math.sin((p.y+i)*.02)*.4; if (p.y < -10){ p.y = innerHeight+10; p.x = Math.random()*innerWidth; }
-        ctx.globalAlpha = p.a * (p.y/innerHeight); ctx.fillStyle = cols[i%3]; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); });
-      ctx.globalAlpha = 1;
-      if (running) raf = requestAnimationFrame(frame);
-    })();
-
-    // scramble the name while the bar fills
-    const glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ01<>/*';
-    const t0 = performance.now(), dur = 2000;
+    const t0 = performance.now(), dur = 1200;
     (function tick(now) {
       const p = Math.min(1, ((now || performance.now()) - t0) / dur);
       const eased = 1 - Math.pow(1 - p, 2);
       pctEl.textContent = Math.round(eased * 100);
       barEl.style.width = (eased * 100) + '%';
-      // reveal name left-to-right, scramble the rest
-      const revealed = Math.floor(eased * target.length);
-      let out = '';
-      for (let i = 0; i < target.length; i++) {
-        if (target[i] === ' ') { out += ' '; continue; }
-        out += i < revealed ? target[i] : glyphs[(Math.random()*glyphs.length)|0];
-      }
-      nameEl.textContent = out;
-      if (p < 1) requestAnimationFrame(tick);
-      else finish();
+      if (p < 1) requestAnimationFrame(tick); else finish();
     })(t0);
 
     function finish() {
-      nameEl.textContent = target;
-      running = false; cancelAnimationFrame(raf);
-      if (hasGSAP) {
-        gsap.to(intro, { opacity: 0, duration: .7, ease: 'power2.inOut', onComplete: kill });
-        gsap.to('.intro__center', { y: -20, duration: .7, ease: 'power2.in' });
-      } else { intro.style.transition = 'opacity .6s'; intro.style.opacity = '0'; setTimeout(kill, 600); }
+      if (hasGSAP) gsap.to(intro, { opacity: 0, duration: .6, ease: 'power2.inOut', onComplete: kill });
+      else { intro.style.transition = 'opacity .5s'; intro.style.opacity = '0'; setTimeout(kill, 500); }
     }
-    function kill() { intro.classList.add('is-gone'); intro.remove(); document.body.classList.remove('intro-lock'); done(); }
+    function kill() { intro.remove(); document.body.classList.remove('intro-lock'); done(); }
   }
 
-  /* ---------- hero entrance ---------- */
+  /* ---------- hero entrance (clean slide + fade, no scramble) ---------- */
   function startHero() {
+    if (reduce || !hasGSAP) return;
     const lines = document.querySelectorAll('.hero__line');
-    if (reduce || !hasGSAP) { lines.forEach((l) => l.dataset.decode && (l.textContent = l.dataset.decode)); return; }
     gsap.set(lines, { yPercent: 108 });
-    gsap.to(lines, { yPercent: 0, duration: 1.05, ease: 'power4.out', stagger: .1, onStart: () => lines.forEach((l, i) => decodeEl(l, 500 + i * 120)) });
-    gsap.from('.hero__eyebrow, .hero__tagline, .hero__meta, .hero__scroll', { y: 22, opacity: 0, duration: .9, ease: 'power3.out', stagger: .08, delay: .5 });
-    // parallax the title as the hero scrolls away, and fade the webgl out
+    gsap.to(lines, { yPercent: 0, duration: 1.0, ease: 'power4.out', stagger: .1 });
+    gsap.from('.hero__eyebrow, .hero__tagline, .hero__meta, .hero__scroll', { y: 22, opacity: 0, duration: .9, ease: 'power3.out', stagger: .08, delay: .35 });
     if (window.ScrollTrigger) {
-      gsap.to('.hero__title', { yPercent: -16, opacity: .4, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
-      const gl = document.getElementById('heroGl');
-      if (gl) gsap.to(gl, { opacity: 0, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'center top', end: 'bottom top', scrub: true } });
+      gsap.to('.hero__title', { yPercent: -14, opacity: .5, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+      gsap.to('.hero__glow', { opacity: 0, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'center top', end: 'bottom top', scrub: true } });
     }
   }
 
-  /* ---------- decode / scramble a single element to its data-decode text ---------- */
-  function decodeEl(el, duration) {
-    const target = el.dataset.decode || el.textContent;
-    if (reduce) { el.textContent = target; return; }
-    const glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz.,&';
-    const t0 = performance.now(), dur = duration || 700;
-    (function step(now) {
-      const p = Math.min(1, (now - t0) / dur);
-      const revealed = Math.floor(p * target.length);
-      let out = '';
-      for (let i = 0; i < target.length; i++) {
-        const ch = target[i];
-        if (ch === ' ' || i < revealed) out += ch;
-        else out += glyphs[(Math.random() * glyphs.length) | 0];
-      }
-      el.textContent = out;
-      if (p < 1) requestAnimationFrame(step);
-      else el.textContent = target;
-    })(t0);
-  }
-
-  /* ---------- canvas project visuals (run only when on screen) ---------- */
+  /* ---------- canvas project visuals, throttled to ~30fps ----------
+     with sticky stacking, a couple canvases can share the screen, so we
+     cap the frame rate and the dpr to keep paint cheap. */
   function setupCanvases() {
     document.querySelectorAll('.project__canvas').forEach((canvas) => {
       const kind = canvas.dataset.visual;
@@ -130,18 +74,23 @@
       const getSize = () => size;
       function resize() {
         const rect = canvas.getBoundingClientRect();
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.3);
         size = { w: rect.width, h: rect.height };
-        canvas.width = Math.max(1, rect.width * dpr);
-        canvas.height = Math.max(1, rect.height * dpr);
+        canvas.width = Math.max(1, Math.round(rect.width * dpr));
+        canvas.height = Math.max(1, Math.round(rect.height * dpr));
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
       resize();
       window.addEventListener('resize', resize);
       const frame = factory(ctx, getSize);
-      let raf = null; const start = performance.now();
+      let raf = null, last = 0; const start = performance.now();
       frame(2.6); // settled idle frame right away
-      function loop(now) { frame((now - start) / 1000); raf = requestAnimationFrame(loop); }
+      function loop(now) {
+        raf = requestAnimationFrame(loop);
+        if (now - last < 33) return;         // ~30fps cap
+        last = now;
+        frame((now - start) / 1000);
+      }
       new IntersectionObserver((entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting && raf === null) { if (reduce) { frame(2.6); return; } raf = requestAnimationFrame(loop); }
@@ -151,12 +100,10 @@
     });
   }
 
-  /* ---------- scroll reveals + title fill + section-title decode ---------- */
+  /* ---------- scroll reveals + title fill ---------- */
   function setupReveals() {
     const els = document.querySelectorAll('[data-reveal]');
     const fills = document.querySelectorAll('[data-fill]');
-    const decodes = document.querySelectorAll('.section-title[data-decode]');
-
     if (reduce) { els.forEach((el) => el.classList.add('in')); return; }
     fills.forEach((el) => el.classList.add('is-outlined'));
     const fillIn = (el) => { el.classList.remove('is-outlined'); el.classList.add('is-filled'); };
@@ -165,7 +112,6 @@
       gsap.registerPlugin(ScrollTrigger);
       els.forEach((el) => ScrollTrigger.create({ trigger: el, start: 'top 88%', onEnter: () => el.classList.add('in') }));
       fills.forEach((el) => ScrollTrigger.create({ trigger: el, start: 'top 82%', onEnter: () => fillIn(el) }));
-      decodes.forEach((el) => ScrollTrigger.create({ trigger: el, start: 'top 85%', once: true, onEnter: () => decodeEl(el, 650) }));
     } else {
       const io = new IntersectionObserver((en, ob) => en.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); ob.unobserve(e.target); } }), { threshold: .15 });
       els.forEach((el) => io.observe(el));
@@ -174,16 +120,17 @@
     }
   }
 
-  /* ---------- stacking depth: shrink each card as the next covers it ---------- */
+  /* ---------- stacking depth: scale + fade each card as the next covers it.
+     transform + opacity only, so it stays on the compositor (no repaint). */
   function setupStacking() {
     if (reduce || !hasGSAP || !window.ScrollTrigger) return;
-    if (window.innerWidth <= 860) return; // cards are unstacked on mobile
+    if (window.innerWidth <= 860) return;
     const cards = [...document.querySelectorAll('.project')];
     cards.forEach((card, i) => {
       if (i === cards.length - 1) return;
       const grid = card.querySelector('.project__grid');
       gsap.to(grid, {
-        scale: 0.93, opacity: 0.5, filter: 'brightness(.7)', ease: 'none', transformOrigin: 'center top',
+        scale: 0.94, opacity: 0.45, ease: 'none', transformOrigin: 'center top',
         scrollTrigger: { trigger: cards[i + 1], start: 'top bottom', end: 'top top', scrub: true },
       });
     });
@@ -193,7 +140,7 @@
   function setupTilt() {
     document.querySelectorAll('[data-tilt]').forEach((el) => {
       const inner = el.querySelector('.window') || el;
-      const strength = 8;
+      const strength = 7;
       el.addEventListener('pointermove', (e) => {
         const r = el.getBoundingClientRect();
         const px = (e.clientX - r.left) / r.width - 0.5;
@@ -207,12 +154,10 @@
   /* ---------- magnetic buttons ---------- */
   function setupMagnetic() {
     document.querySelectorAll('[data-magnetic]').forEach((el) => {
-      const pull = 0.35;
+      const pull = 0.3;
       el.addEventListener('pointermove', (e) => {
         const r = el.getBoundingClientRect();
-        const x = e.clientX - (r.left + r.width / 2);
-        const y = e.clientY - (r.top + r.height / 2);
-        el.style.transform = `translate(${x * pull}px, ${y * pull}px)`;
+        el.style.transform = `translate(${(e.clientX - (r.left + r.width / 2)) * pull}px, ${(e.clientY - (r.top + r.height / 2)) * pull}px)`;
       });
       el.addEventListener('pointerleave', () => { el.style.transform = 'translate(0,0)'; });
     });
@@ -274,8 +219,8 @@
   function setupSmoothScroll() {
     if (reduce || isTouch || typeof window.Lenis === 'undefined') return;
     const lenis = new window.Lenis({ duration: 1.1, smoothWheel: true });
-    (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(0);
     if (hasGSAP && window.ScrollTrigger) { lenis.on('scroll', ScrollTrigger.update); gsap.ticker.add((t) => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0); }
+    else { (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(0); }
     document.querySelectorAll('a[href^="#"]').forEach((a) => a.addEventListener('click', (e) => { const id = a.getAttribute('href'); if (id.length < 2) return; const el = document.querySelector(id); if (el) { e.preventDefault(); lenis.scrollTo(el, { offset: -10 }); } }));
     window.__lenis = lenis;
   }

@@ -1,27 +1,26 @@
 # ronitagarwal.dev
 
-My personal site. Dark, cinematic, project-first, and built from scratch with no framework and no build step, just HTML, CSS, and vanilla JavaScript. A WebGL shader drives the hero, GSAP drives the scroll motion, and everything else is plain DOM and canvas.
+My personal site. Dark, project-first, and built from scratch with no framework and no build step, just HTML, CSS, and vanilla JavaScript. GSAP drives the scroll motion and everything else is plain DOM and canvas. It stays light: the canvas visuals cap at 30fps and pause off screen, motion is transform and opacity only, and there is no heavy background shader.
 
 ## What's in here
 
 ```
 index.html        all sections and the real content
 css/style.css     the design system (ember-on-black, type scale, responsive)
-js/hero-gl.js     the WebGL ember/fire hero shader (with a 2d particle fallback)
 js/visuals.js     five canvas animators, one per project
-js/main.js        intro, decode text, stacking scroll, tilt, cursor, easter eggs
+js/main.js        intro, reveals, stacking scroll, tilt, cursor, easter eggs
 assets/           favicon and the social card
 ```
 
 ## Sections
 
-- A short cinematic intro (particles + name decode) that reveals into the hero
-- Hero: stacked name over a live, mouse-reactive WebGL fire field
+- A short intro (name plus a progress bar) that fades into the hero
+- Hero: the stacked name over a soft ember glow
 - A scrolling ticker of headline wins
 - Selected Work: five shipped projects as sticky cards that stack as you scroll, each with a live canvas visual, 3D-tilt window, and tech stack
-- Numbers with count-up stats
-- Awards and placements
-- Leadership and impact
+- By the Numbers: five count-up figures with the headline stat featured
+- Awards: the full record, numbered, with medal accents
+- Leadership and impact: cards led by a single big metric
 - About and skills
 - Contact
 
