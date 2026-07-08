@@ -102,9 +102,12 @@
 
   /* ---------- scroll reveals + title fill ---------- */
   function setupReveals() {
-    const els = document.querySelectorAll('[data-reveal]');
+    const allReveal = [...document.querySelectorAll('[data-reveal]')];
+    // awards get their own staggered treatment, so keep them out of the generic pass
+    const els = allReveal.filter((el) => !el.classList.contains('award'));
+    const awards = allReveal.filter((el) => el.classList.contains('award'));
     const fills = document.querySelectorAll('[data-fill]');
-    if (reduce) { els.forEach((el) => el.classList.add('in')); return; }
+    if (reduce) { allReveal.forEach((el) => el.classList.add('in')); return; }
     fills.forEach((el) => el.classList.add('is-outlined'));
     const fillIn = (el) => { el.classList.remove('is-outlined'); el.classList.add('is-filled'); };
 
@@ -112,9 +115,14 @@
       gsap.registerPlugin(ScrollTrigger);
       els.forEach((el) => ScrollTrigger.create({ trigger: el, start: 'top 88%', onEnter: () => el.classList.add('in') }));
       fills.forEach((el) => ScrollTrigger.create({ trigger: el, start: 'top 82%', onEnter: () => fillIn(el) }));
+      // awards slide in from the left in a quick stagger, medal bar drawing as each lands
+      ScrollTrigger.batch(awards, {
+        start: 'top 92%',
+        onEnter: (batch) => batch.forEach((el, i) => setTimeout(() => el.classList.add('in'), i * 70)),
+      });
     } else {
       const io = new IntersectionObserver((en, ob) => en.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); ob.unobserve(e.target); } }), { threshold: .15 });
-      els.forEach((el) => io.observe(el));
+      allReveal.forEach((el) => io.observe(el)); // awards included here since there's no gsap stagger to run
       const io2 = new IntersectionObserver((en, ob) => en.forEach((e) => { if (e.isIntersecting) { fillIn(e.target); ob.unobserve(e.target); } }), { threshold: .4 });
       fills.forEach((el) => io2.observe(el));
     }
