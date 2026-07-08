@@ -25,18 +25,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 
-  <noscript><style>#intro{display:none!important}[data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
+  <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
-  <!-- short, clean intro: name + progress, then fades away -->
-  <div class="intro" id="intro" aria-hidden="true">
-    <div class="intro__center">
-      <div class="intro__name">RONIT AGARWAL</div>
-      <div class="intro__bar"><span id="introBarFill"></span></div>
-      <div class="intro__pct mono"><span id="introPct">0</span>%</div>
-    </div>
-  </div>
-
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
   <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
   <div class="cursor-ring" id="cursorRing" aria-hidden="true"><span class="cursor-label" id="cursorLabel"></span></div>
@@ -89,7 +80,7 @@
       <div class="section-head" data-reveal>
         <span class="section-num mono">01 / PROJECTS</span>
         <h2 class="section-title">Projects.</h2>
-        <p class="section-sub">Five products, shipped and used by real people. Every one owned the whole way, from raw data and research to a live build, then defended in front of judges. Together they've reached 250+ users.</p>
+        <p class="section-sub">Things I've actually built and shipped, not class assignments. Each one started from a problem I wanted solved and a pile of raw data, and ended as something people could open and use.</p>
       </div>
 
       <div class="stack">
@@ -98,8 +89,8 @@
             <div class="project__body">
               <span class="project__index mono">01 — Solo build · Python, Flask, scikit-learn</span>
               <h3 class="project__title" data-fill>Wildfire Risk Prediction AI</h3>
-              <p class="project__hook">One honest question: how likely is a fire where I'm standing, right now?</p>
-              <p class="project__desc">I trained decision-tree models on NASA and Kaggle geospatial data, then built the whole thing solo: sourcing and cleaning the raw data, engineering features across temperature, humidity, wind, and vegetation, validating the model, and deploying a Flask front end that maps live risk by region. Shipped to 50 to 100+ people who actually used it.</p>
+              <p class="project__hook">Tells you how likely a wildfire is right where you are.</p>
+              <p class="project__desc">Decision-tree models trained on NASA and Kaggle geospatial data. I built and shipped the whole thing myself: pulling and cleaning the raw data, engineering features from temperature, humidity, wind, and vegetation, checking the model actually held up, and putting it behind a Flask app that maps risk by region. Around 50 to 100 people used it.</p>
               <div class="project__foot">
                 <div class="project__stat"><span class="big" data-count="100" data-suffix="+">0</span><span class="mono">users reached</span></div>
                 <ul class="tags mono"><li>Python</li><li>Flask</li><li>scikit-learn</li><li>Geospatial ML</li></ul>
@@ -119,8 +110,8 @@
             <div class="project__body">
               <span class="project__index mono">02 — Team build · Adaptive ML</span>
               <h3 class="project__title" data-fill>MindFlow AI</h3>
-              <p class="project__hook">A wellness coach that learns you instead of repeating itself.</p>
-              <p class="project__desc">Most wellness apps hand everyone the same advice. MindFlow tracks each person's check-ins over time and adapts its prompts and suggestions to them. We grew it to 50+ users with adaptive insights that keep people motivated, mindful, and steady through their day.</p>
+              <p class="project__hook">A wellness coach that adapts to you instead of repeating itself.</p>
+              <p class="project__desc">Most of these apps hand everyone the same advice. This one tracks a person's check-ins over time and changes what it suggests based on them. It grew to around 50 users.</p>
               <div class="project__foot">
                 <div class="project__stat"><span class="big" data-count="50" data-suffix="+">0</span><span class="mono">active users</span></div>
                 <ul class="tags mono"><li>AI/ML</li><li>Personalization</li><li>Adaptive Models</li></ul>
@@ -140,8 +131,8 @@
             <div class="project__body">
               <span class="project__index mono">03 — Team build · EdTech</span>
               <h3 class="project__title" data-fill>FinQuest AI</h3>
-              <p class="project__hook">Teach money by letting people spend it where it can't hurt them.</p>
-              <p class="project__desc">FinQuest is a gamified financial-literacy platform that reached 50+ students. It blends adaptive learning, immersive simulations, and automated financial analysis so students practice budgeting, saving, and investing in a safe sandbox before any of it touches real money.</p>
+              <p class="project__hook">Practice real money decisions somewhere they can't hurt you.</p>
+              <p class="project__desc">A financial-literacy game that reached about 50 students. Short lessons plus simulations, so you can try budgeting, saving, and investing in a sandbox before any of it is real money. The idea was to teach by doing, not by lecturing.</p>
               <div class="project__foot">
                 <div class="project__stat"><span class="big" data-count="50" data-suffix="+">0</span><span class="mono">students taught</span></div>
                 <ul class="tags mono"><li>EdTech</li><li>Gamification</li><li>Financial Literacy</li></ul>
@@ -161,8 +152,8 @@
             <div class="project__body">
               <span class="project__index mono">04 — Team build · Computer Vision</span>
               <h3 class="project__title" data-fill>BrailleVision</h3>
-              <p class="project__hook">Read physical Braille with the phone already in your pocket.</p>
-              <p class="project__desc">No special hardware. BrailleVision reads embossed or handwritten Braille dots straight from a camera or a photo, converts them to English text, and speaks the result aloud. We built it for real pages, machine-embossed and handwritten alike, not just clean digital samples, and put it in the hands of 50+ users.</p>
+              <p class="project__hook">Read physical Braille with a regular phone camera.</p>
+              <p class="project__desc">No special hardware. It reads embossed or handwritten Braille from a photo, turns it into text, and reads it aloud. We built it for real pages, handwritten and machine-embossed, not just clean digital samples. Around 50 people used it.</p>
               <div class="project__foot">
                 <div class="project__stat"><span class="big" data-count="50" data-suffix="+">0</span><span class="mono">users served</span></div>
                 <ul class="tags mono"><li>Computer Vision</li><li>Accessibility</li><li>OCR</li><li>Text-to-Speech</li></ul>
@@ -182,8 +173,8 @@
             <div class="project__body">
               <span class="project__index mono">05 — Team build · Game Design</span>
               <h3 class="project__title" data-fill>Prosperity Empire</h3>
-              <p class="project__hook">You don't read the economics lesson. You play it.</p>
-              <p class="project__desc">A browser-based financial-civilization idle game for 50+ players, where progress only comes from balancing production, trade, and reinvestment. The core loops are designed so players internalize real economic tradeoffs by feel, through play, instead of being lectured.</p>
+              <p class="project__hook">An economics lesson you play instead of read.</p>
+              <p class="project__desc">A browser idle game where the only way forward is balancing production, trade, and reinvestment. I wanted players to feel the tradeoffs themselves instead of being told about them. Around 50 people played it.</p>
               <div class="project__foot">
                 <div class="project__stat"><span class="big" data-count="50" data-suffix="+">0</span><span class="mono">players</span></div>
                 <ul class="tags mono"><li>Game Design</li><li>Economics</li><li>Browser Game</li></ul>
@@ -200,38 +191,12 @@
       </div>
     </section>
 
-    <!-- ============ APPROACH ============ -->
-    <section class="approach" id="approach">
-      <div class="section-head" data-reveal>
-        <span class="section-num mono">02 / APPROACH</span>
-        <h2 class="section-title">How I build.</h2>
-        <p class="section-sub">Three habits that show up in every project above.</p>
-      </div>
-      <div class="approach__grid">
-        <article class="pillar" data-reveal>
-          <span class="pillar__num mono">01</span>
-          <h3>Own the whole problem</h3>
-          <p>From raw data and research to a deployed front end, I take a project the entire way instead of stopping at a notebook. Wildfire Risk AI was mine end to end, solo.</p>
-        </article>
-        <article class="pillar" data-reveal data-reveal-delay="1">
-          <span class="pillar__num mono">02</span>
-          <h3>Ship to real users</h3>
-          <p>A build only counts when people use it. Every project here reached real people, from a 50 to 100+ user ML tool to games and platforms students actually opened.</p>
-        </article>
-        <article class="pillar" data-reveal data-reveal-delay="2">
-          <span class="pillar__num mono">03</span>
-          <h3>Win in the room</h3>
-          <p>I don't just build it, I defend it live. That loop, research to build to presentation, is what turned the work into state and national placements.</p>
-        </article>
-      </div>
-    </section>
-
     <!-- ============ AWARDS ============ -->
     <section class="awards" id="awards">
       <div class="section-head" data-reveal>
-        <span class="section-num mono">03 / RECEIPTS</span>
-        <h2 class="section-title">The wins, on record.</h2>
-        <p class="section-sub">10+ state and national placements across technology, data, and business. Same person, three different arenas.</p>
+        <span class="section-num mono">02 / COMPETITIONS</span>
+        <h2 class="section-title">Competitions.</h2>
+        <p class="section-sub">I compete in tech, data, and business at the state and national level. A few of the results.</p>
       </div>
       <ol class="awards__list">
         <li class="award" data-rank="gold" data-reveal><span class="award__idx mono">01</span><span class="award__place mono">1st</span><span class="award__title">Website Coding &amp; Development</span><span class="award__org">Washington FBLA SBLC</span><span class="award__date mono">Apr 2026</span><span class="award__go" aria-hidden="true">→</span></li>
@@ -249,9 +214,9 @@
     <!-- ============ LEADERSHIP ============ -->
     <section class="lead" id="lead">
       <div class="section-head" data-reveal>
-        <span class="section-num mono">04 / OFF THE KEYBOARD</span>
+        <span class="section-num mono">03 / OFF THE KEYBOARD</span>
         <h2 class="section-title">Leadership &amp; impact.</h2>
-        <p class="section-sub">Where I put the same ownership to work on people and money, not just code.</p>
+        <p class="section-sub">What I spend time on when I'm not building software.</p>
       </div>
       <div class="lead__grid">
         <article class="card card--wide" data-reveal>
@@ -308,9 +273,9 @@
     <!-- ============ CREDENTIALS ============ -->
     <section class="creds" id="creds">
       <div class="section-head" data-reveal>
-        <span class="section-num mono">05 / CREDENTIALS</span>
-        <h2 class="section-title">Certified &amp; recognized.</h2>
-        <p class="section-sub">The paperwork behind the placements: certifications and honors on the record.</p>
+        <span class="section-num mono">04 / CERTIFICATIONS</span>
+        <h2 class="section-title">Certifications.</h2>
+        <p class="section-sub">Certifications and honors, on the record.</p>
       </div>
       <ul class="creds__list">
         <li class="cred" data-reveal><span class="cred__name">AI Website Project</span><span class="cred__org mono">USAAI National Competition Series</span></li>
@@ -325,14 +290,14 @@
     <!-- ============ ABOUT ============ -->
     <section class="about" id="about">
       <div class="section-head" data-reveal>
-        <span class="section-num mono">06 / ABOUT</span>
+        <span class="section-num mono">05 / ABOUT</span>
         <h2 class="section-title">Who's behind it.</h2>
       </div>
       <div class="about__grid">
         <div class="about__bio" data-reveal>
-          <p>I'm Ronit, a sophomore at North Creek High School and an independent builder who likes owning the whole problem. I carry a <strong class="hl">4.0 GPA</strong>, I've shipped <strong class="hl">5 products</strong> to <strong class="hl">250+ users</strong>, and I've turned that work into <strong class="hl">10+ state and national placements</strong> across tech, data, and business.</p>
-          <p>I take classes across CS, applied math, and business on purpose, because that's the exact mix behind everything above: AP Calculus AB, AP Computer Science A, AP Physics 1, AP Seminar, AP CSP, Finance, and Intro to Marketing.</p>
-          <p>Away from the keyboard I help lead a <strong class="hl">30,000-student</strong> international program, tutor kids from phonics to calculus, and play cricket at PBL Cricket Academy, where I also coach the younger players. Different rooms, same instinct: take something hard and make it work.</p>
+          <p>I'm Ronit, a sophomore at North Creek High School in Bothell. Mostly I build things: machine-learning tools, web apps, and the odd game. I like starting from a problem I actually care about and taking it the whole way to something people can use.</p>
+          <p>I keep a <strong class="hl">4.0</strong> and load up on CS, math, and business, AP Calculus AB, AP Computer Science A, AP Physics 1, AP Seminar, AP CSP, Finance, and Marketing, because that's the mix my projects need. The classes are the floor, though. I learn the most from actually shipping.</p>
+          <p>Away from the screen I help run a <strong class="hl">30,000-student</strong> international program, tutor kids from phonics through calculus, and play cricket at PBL Cricket Academy, where I also coach the younger players.</p>
         </div>
         <div class="about__skills" data-reveal data-reveal-delay="1">
           <div class="skillrow"><span class="skillrow__label mono">Languages</span><ul class="tags mono"><li>Python</li><li>Java</li><li>JavaScript</li><li>HTML/CSS</li></ul></div>
@@ -345,9 +310,9 @@
 
     <!-- ============ CONTACT ============ -->
     <section class="contact" id="contact">
-      <span class="section-num mono" data-reveal>07 / CONTACT</span>
+      <span class="section-num mono" data-reveal>06 / CONTACT</span>
       <h2 class="contact__title" data-fill>Let's build something.</h2>
-      <p class="contact__sub" data-reveal>Open to internships, hackathon teams, and problems worth losing sleep over. Email is the fastest way in.</p>
+      <p class="contact__sub" data-reveal>I'm open to internships, hackathon teams, and hard problems. Email's the fastest way to reach me.</p>
       <div class="contact__links" data-reveal data-reveal-delay="1">
         <a class="contact__link" href="mailto:ronit_agarwal@outlook.com" data-magnetic><span class="mono">EMAIL</span><span>ronit_agarwal@outlook.com</span></a>
         <a class="contact__link" href="https://github.com/BoyTiger-1" target="_blank" rel="noopener" data-magnetic><span class="mono">GITHUB</span><span>github.com/BoyTiger-1</span></a>

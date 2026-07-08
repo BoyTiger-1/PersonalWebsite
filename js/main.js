@@ -21,34 +21,10 @@
     setupSmoothScroll();
     setupReveals();
     setupStacking();
-    setupIntro(startHero);
+    startHero();
   });
 
-  /* ---------- intro: name + a quick progress bar, then fade out ---------- */
-  function setupIntro(done) {
-    const intro = document.getElementById('intro');
-    if (!intro || reduce) { if (intro) intro.remove(); done(); return; }
-    document.body.classList.add('intro-lock');
-    const barEl = document.getElementById('introBarFill');
-    const pctEl = document.getElementById('introPct');
-
-    const t0 = performance.now(), dur = 1200;
-    (function tick(now) {
-      const p = Math.min(1, ((now || performance.now()) - t0) / dur);
-      const eased = 1 - Math.pow(1 - p, 2);
-      pctEl.textContent = Math.round(eased * 100);
-      barEl.style.width = (eased * 100) + '%';
-      if (p < 1) requestAnimationFrame(tick); else finish();
-    })(t0);
-
-    function finish() {
-      if (hasGSAP) gsap.to(intro, { opacity: 0, duration: .6, ease: 'power2.inOut', onComplete: kill });
-      else { intro.style.transition = 'opacity .5s'; intro.style.opacity = '0'; setTimeout(kill, 500); }
-    }
-    function kill() { intro.remove(); document.body.classList.remove('intro-lock'); done(); }
-  }
-
-  /* ---------- hero entrance (clean slide + fade, no scramble) ---------- */
+  /* ---------- hero entrance (clean slide + fade) ---------- */
   function startHero() {
     if (reduce || !hasGSAP) return;
     const lines = document.querySelectorAll('.hero__line');
