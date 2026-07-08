@@ -270,12 +270,10 @@ section { position: relative; z-index: 2; padding: clamp(80px, 13vh, 170px) var(
 .contact__title[data-fill].is-outlined { color: transparent; -webkit-text-stroke: 1.5px var(--muted); }
 .contact__title[data-fill].is-filled { color: var(--text); -webkit-text-stroke: 1.5px transparent; }
 .contact__sub { color: var(--muted); max-width: 540px; margin: 0 auto 44px; font-size: clamp(15px, 1.5vw, 19px); }
-.contact__links { display: flex; flex-direction: column; gap: 12px; max-width: 520px; margin: 0 auto; }
-.contact__link { display: flex; justify-content: space-between; align-items: center; gap: 12px 20px; flex-wrap: wrap; border: 1px solid var(--line); border-radius: 12px; padding: 18px 24px; transition: border-color .25s, background .25s, transform .25s; }
-.contact__link:hover { border-color: var(--ember); background: var(--surface); }
-.contact__link .mono { color: var(--faint); font-size: 12px; letter-spacing: .14em; flex-shrink: 0; }
-.contact__link span:last-child { font-family: var(--font-display); font-size: clamp(14px, 1.5vw, 18px); min-width: 0; text-align: right; overflow-wrap: anywhere; }
-@media (max-width: 520px) { .contact__link { flex-direction: column; align-items: flex-start; gap: 6px; } .contact__link span:last-child { text-align: left; } }
+.contact__socials { display: flex; gap: 16px; justify-content: center; }
+.social { width: 60px; height: 60px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 16px; color: var(--muted); background: var(--surface); transition: color .25s, border-color .25s, transform .25s, box-shadow .25s; }
+.social svg { width: 24px; height: 24px; fill: currentColor; display: block; }
+.social:hover { color: var(--ember); border-color: var(--ember); transform: translateY(-4px); box-shadow: 0 18px 40px -24px rgba(255,92,31,.7); }
 
 /* ---------- footer ---------- */
 .footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; align-items: center; padding: 30px var(--gutter); border-top: 1px solid var(--line); color: var(--faint); font-size: 13px; position: relative; z-index: 2; }
