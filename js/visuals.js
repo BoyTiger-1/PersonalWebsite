@@ -244,5 +244,55 @@
     }
   }
 
-  window.RonitVisuals = { wildfire, mindflow, finquest, braille, prosperity };
+  // 6) ALPHALAB — a live candlestick chart with a moving-average line
+  function alphalab(ctx, getSize) {
+    const candles = [];
+    let last = 60;
+    function step() {
+      const o = last;
+      const c = o + (Math.random() - 0.48) * 7;
+      const hi = Math.max(o, c) + Math.random() * 3;
+      const lo = Math.min(o, c) - Math.random() * 3;
+      last = c;
+      candles.push({ o, c, hi, lo });
+      if (candles.length > 80) candles.shift();
+    }
+    for (let i = 0; i < 60; i++) step();
+    let acc = 0;
+    return function () {
+      const { w, h } = getSize();
+      ctx.clearRect(0, 0, w, h);
+      // faint terminal grid
+      ctx.strokeStyle = 'rgba(255,255,255,0.04)'; ctx.lineWidth = 1;
+      for (let gy = 1; gy < 5; gy++) { const y = h * gy / 5; ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+      const cw = 11, n = Math.min(candles.length, Math.floor(w / cw));
+      const vis = candles.slice(-n);
+      let mn = Infinity, mx = -Infinity;
+      vis.forEach((c) => { mn = Math.min(mn, c.lo); mx = Math.max(mx, c.hi); });
+      const pad = 14, span = (mx - mn) || 1;
+      const yOf = (v) => h - pad - (v - mn) / span * (h - 2 * pad);
+      vis.forEach((c, i) => {
+        const x = i * cw + cw / 2, up = c.c >= c.o;
+        ctx.strokeStyle = up ? 'rgba(72,199,142,.9)' : 'rgba(235,90,90,.9)';
+        ctx.fillStyle = up ? 'rgba(72,199,142,.85)' : 'rgba(235,90,90,.85)';
+        ctx.beginPath(); ctx.moveTo(x, yOf(c.hi)); ctx.lineTo(x, yOf(c.lo)); ctx.stroke();
+        const yo = yOf(c.o), yc = yOf(c.c);
+        ctx.fillRect(x - cw * 0.3, Math.min(yo, yc), cw * 0.6, Math.max(1.5, Math.abs(yc - yo)));
+      });
+      // moving-average line in AlphaLab blue
+      ctx.strokeStyle = 'rgba(79,139,255,.95)'; ctx.lineWidth = 1.5; ctx.beginPath();
+      const p = 6;
+      vis.forEach((c, i) => {
+        let sum = 0, cnt = 0;
+        for (let k = Math.max(0, i - p + 1); k <= i; k++) { sum += vis[k].c; cnt++; }
+        const x = i * cw + cw / 2, y = yOf(sum / cnt);
+        i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+      });
+      ctx.stroke();
+      // scroll: add a new candle roughly once a second
+      if (++acc > 30) { step(); acc = 0; }
+    };
+  }
+
+  window.RonitVisuals = { alphalab, wildfire, mindflow, finquest, braille, prosperity };
 })();
