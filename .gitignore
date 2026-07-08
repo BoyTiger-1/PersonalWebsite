@@ -12,3 +12,6 @@ dist/
 
 # local notes and the build plan (keep the repo about the site itself)
 PLAN.md
+
+# personal source docs, keep them out of the public repo
+*.pdf
