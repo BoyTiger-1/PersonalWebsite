@@ -294,5 +294,40 @@
     };
   }
 
-  window.RonitVisuals = { alphalab, wildfire, mindflow, finquest, braille, prosperity };
+  // 7) ITEMLY — a campus map with pulsing item pins and a periodic "match"
+  function itemly(ctx, getSize) {
+    const pins = [[.18, .28], [.5, .18], [.78, .34], [.34, .62], [.66, .7], [.86, .72], [.14, .8]];
+    const matches = [[1, 3], [2, 4], [0, 5], [6, 4]]; // pairs the matcher will connect
+    const green = '45,212,191';
+    return function (t) {
+      const { w, h } = getSize();
+      ctx.clearRect(0, 0, w, h);
+      // faint map grid
+      ctx.strokeStyle = 'rgba(255,255,255,0.04)'; ctx.lineWidth = 1;
+      const step = 34;
+      for (let x = step; x < w; x += step) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+      for (let y = step; y < h; y += step) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+      // one match at a time, cycling through the pairs
+      const period = 3.2, idx = Math.floor(t / period) % matches.length, cyc = (t % period) / period;
+      const [ai, bi] = matches[idx];
+      const a = pins[ai], b = pins[bi];
+      if (cyc < 0.75) {
+        const ax = a[0] * w, ay = a[1] * h, bx = b[0] * w, by = b[1] * h, p = cyc / 0.75;
+        ctx.strokeStyle = 'rgba(255,176,32,0.5)'; ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(ax + (bx - ax) * p, ay + (by - ay) * p); ctx.stroke();
+        ctx.beginPath(); ctx.arc(ax + (bx - ax) * p, ay + (by - ay) * p, 4, 0, Math.PI * 2); ctx.fillStyle = '#FFB020'; ctx.fill();
+      }
+      // pins with a soft breathing halo
+      pins.forEach((pt, i) => {
+        const x = pt[0] * w, y = pt[1] * h, pulse = Math.sin(t * 2 + i) * 0.5 + 0.5;
+        const hot = i === ai || i === bi;
+        ctx.beginPath(); ctx.arc(x, y, 6 + pulse * 9, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${green},${0.10 * (1 - pulse)})`; ctx.fill();
+        ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI * 2);
+        ctx.fillStyle = hot ? '#FFB020' : `rgb(${green})`; ctx.fill();
+      });
+    };
+  }
+
+  window.RonitVisuals = { alphalab, itemly, wildfire, mindflow, finquest, braille, prosperity };
 })();

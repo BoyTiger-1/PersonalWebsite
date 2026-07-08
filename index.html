@@ -101,7 +101,7 @@
               <span class="project__index mono">Solo build · JavaScript, Python, runs in the browser</span>
               <h3 class="project__title" data-fill>AlphaLab</h3>
               <p class="project__hook">A Bloomberg-terminal-style quant research desk that runs entirely in your browser.</p>
-              <p class="project__desc">One self-contained HTML file, no server and no API keys. It packs 118 strategy modules across trend, momentum, stat-arb, volatility, factors, and machine learning, plus portfolio optimizers and a risk lab that replays real crises like 2008, COVID, and 2022. An autonomous researcher generates hypotheses, backtests them through a five-stage statistical gauntlet, and files every result into a knowledge base so it never retries a dead end. All of it runs live on real market data going back to 2000.</p>
+              <p class="project__desc">One self-contained HTML file, no server and no API keys. It packs 118 strategy modules across trend, momentum, stat-arb, volatility, factors, and machine learning, plus portfolio optimizers and a risk lab that replays real crises like 2008, COVID, and 2022. An autonomous researcher generates hypotheses and only flags one as validated after it survives a five-stage gauntlet: out-of-sample consistency, probabilistic Sharpe, cost stress, parameter stability, and sub-period consistency. Every result, including the dead ends, gets filed away. All of it runs live on real market data going back to 2000.</p>
               <div class="project__foot">
                 <div class="project__stat"><span class="big" data-count="118">0</span><span class="mono">strategy modules</span></div>
                 <ul class="tags mono"><li>Quant Finance</li><li>JavaScript</li><li>Backtesting</li><li>Zero backend</li></ul>
@@ -120,7 +120,28 @@
           </div>
         </article>
 
-        <article class="project" data-accent="#FF5C1F" style="--i:1">
+        <article class="project" data-accent="#2DD4BF" style="--i:1">
+          <div class="project__grid">
+            <div class="project__body">
+              <span class="project__index mono">Team build · Live at North Creek HS</span>
+              <h3 class="project__title" data-fill>Itemly</h3>
+              <p class="project__hook">Lost-and-found for a whole high school, matched the moment something's reported.</p>
+              <p class="project__desc">Built and deployed live at North Creek. The instant an item is reported, a matching engine flags likely matches in real time, backed by QR tagging, a live campus map, and a verified claim flow so things go back to the right person. Students and admins get separate views.</p>
+              <div class="project__foot">
+                <div class="project__stat"><span class="big">Live</span><span class="mono">at North Creek HS</span></div>
+                <ul class="tags mono"><li>JavaScript</li><li>Firebase</li><li>Leaflet Maps</li><li>Real-time matching</li></ul>
+              </div>
+            </div>
+            <div class="project__visual" data-tilt>
+              <div class="window">
+                <div class="window__bar"><i></i><i></i><i></i><span class="mono">itemly · campus</span></div>
+                <canvas class="project__canvas" data-visual="itemly" aria-hidden="true"></canvas>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="project" data-accent="#FF5C1F" style="--i:2">
           <div class="project__grid">
             <div class="project__body">
               <span class="project__index mono">Solo build · Python, Flask, scikit-learn</span>
@@ -243,6 +264,7 @@
         <li class="award" data-reveal><span class="award__place mono">6th</span><span class="award__title">Data Science &amp; Analytics</span><span class="award__org">Washington TSA State</span><span class="award__date mono">Apr 2026</span><span class="award__go" aria-hidden="true">→</span></li>
         <li class="award" data-reveal><span class="award__place mono">Finalist</span><span class="award__title">Business Finance Series</span><span class="award__org">Washington DECA SCDC</span><span class="award__date mono">Feb 2026</span><span class="award__go" aria-hidden="true">→</span></li>
         <li class="award" data-reveal><span class="award__place mono">Finalist</span><span class="award__title">USAII Hackathon</span><span class="award__org">USAII</span><span class="award__date mono">Jun 2026</span><span class="award__go" aria-hidden="true">→</span></li>
+        <li class="award" data-reveal><span class="award__place mono">Shortlist</span><span class="award__title">Science &amp; Technology Essay</span><span class="award__org">John Locke Institute Essay Competition</span><span class="award__date mono">2026</span><span class="award__go" aria-hidden="true">→</span></li>
         <li class="award" data-reveal><span class="award__place mono">5×</span><span class="award__title">FPSPI International Conference Qualifier</span><span class="award__org">Future Problem Solving</span><span class="award__date mono">2022–2026</span><span class="award__go" aria-hidden="true">→</span></li>
       </ol>
     </section>
@@ -362,6 +384,7 @@
         <div class="about__bio" data-reveal>
           <p>I'm Ronit, a sophomore at North Creek High School in Bothell. Mostly I build things: machine-learning tools, web apps, and the odd game. I like starting from a problem I actually care about and taking it the whole way to something people can use.</p>
           <p>I keep a <strong class="hl">4.0</strong> and load up on CS, math, and business, the exact mix my projects need. The classes are the floor, though. I learn the most from actually shipping.</p>
+          <p>I also work the money side, so I'm as comfortable with a balance sheet as a codebase. I run a nonprofit chapter's budget as its treasurer and compete in DECA and FBLA finance events, doing the forecasting, budgeting, and financial-statement analysis they throw at you.</p>
           <p>Away from the screen I help run a <strong class="hl">30,000-student</strong> international program, tutor kids from phonics through calculus, and play cricket at PBL Cricket Academy, where I also coach the younger players.</p>
         </div>
         <div class="about__skills" data-reveal data-reveal-delay="1">
@@ -412,7 +435,6 @@
   <footer class="footer">
     <span class="mono">© 2026 Ronit Agarwal · Bothell, WA</span>
     <span class="footer__braille mono" title="ronit" data-translate="ronit" tabindex="0">⠗⠕⠝⠊⠞</span>
-    <span class="mono">Built from scratch. No template.</span>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
