@@ -18,6 +18,7 @@
     setupBrailleFooter();
     setupEasterEggs();
     if (canHover) { setupCursor(); setupTilt(); setupMagnetic(); }
+    setupSpotlight();
     setupSmoothScroll();
     setupReveals();
     setupStacking();
@@ -132,6 +133,17 @@
         inner.style.transform = `rotateY(${px * strength}deg) rotateX(${-py * strength}deg)`;
       });
       el.addEventListener('pointerleave', () => { inner.style.transform = 'rotateY(0) rotateX(0)'; });
+    });
+  }
+
+  /* ---------- spotlight: feed the cursor position to hover glows ---------- */
+  function setupSpotlight() {
+    document.querySelectorAll('.award, .cred, .card').forEach((el) => {
+      el.addEventListener('pointermove', (e) => {
+        const r = el.getBoundingClientRect();
+        el.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+        el.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+      });
     });
   }
 
