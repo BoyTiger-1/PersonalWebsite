@@ -1,22 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0A0A0B"/>
-      <stop offset="1" stop-color="#171012"/>
-    </linearGradient>
-    <linearGradient id="ember" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#FF5C1F"/>
-      <stop offset="1" stop-color="#FFB020"/>
-    </linearGradient>
-    <radialGradient id="glow" cx="0.2" cy="0.9" r="0.9">
-      <stop offset="0" stop-color="#FF5C1F" stop-opacity="0.35"/>
-      <stop offset="1" stop-color="#FF5C1F" stop-opacity="0"/>
-    </radialGradient>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3D5AFE"/><stop offset=".4" stop-color="#A64DFF"/><stop offset=".75" stop-color="#FF4D9D"/><stop offset="1" stop-color="#FFA24D"/></linearGradient>
+    <radialGradient id="r" cx=".8" cy=".2" r=".7"><stop offset="0" stop-color="#A64DFF" stop-opacity=".35"/><stop offset="1" stop-color="#A64DFF" stop-opacity="0"/></radialGradient>
   </defs>
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  <rect width="1200" height="630" fill="url(#glow)"/>
-  <text x="80" y="150" font-family="'JetBrains Mono', monospace" font-size="26" fill="#A1A1AA" letter-spacing="4">BOTHELL, WA · CLASS OF 2028</text>
-  <text x="76" y="320" font-family="'Space Grotesk', system-ui, sans-serif" font-weight="700" font-size="150" fill="#F4F4F5" letter-spacing="-2">RONIT</text>
-  <text x="76" y="460" font-family="'Space Grotesk', system-ui, sans-serif" font-weight="700" font-size="150" fill="url(#ember)" letter-spacing="-2">AGARWAL</text>
-  <text x="80" y="545" font-family="'Space Grotesk', system-ui, sans-serif" font-weight="500" font-size="34" fill="#A1A1AA">Builder · AI/ML Developer · Shipping Real Products</text>
+  <rect width="1200" height="630" fill="#05050A"/>
+  <rect width="1200" height="630" fill="url(#r)"/>
+  <text x="70" y="300" font-family="Helvetica, Arial, sans-serif" font-weight="800" font-size="170" letter-spacing="-6" fill="#F4F2EC">RONIT</text>
+  <text x="70" y="470" font-family="Helvetica, Arial, sans-serif" font-weight="800" font-size="170" letter-spacing="-6" fill="url(#g)">AGARWAL</text>
+  <text x="74" y="550" font-family="Menlo, monospace" font-size="24" fill="#F4F2EC" fill-opacity=".6">BUILDER · RESEARCHER · COMPETITOR · CLASS OF 2028</text>
 </svg>

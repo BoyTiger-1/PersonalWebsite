@@ -1,452 +1,580 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-pal="aurora">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ronit Agarwal — I build AI that ships.</title>
+  <title>Ronit Agarwal · Builder, researcher, competitor</title>
 
-  <meta name="description" content="Ronit Agarwal is a high school AI/ML developer from Bothell, WA who ships AI-powered products to real users and wins at the state and national level." />
+  <meta name="description" content="Ronit Agarwal is a junior at North Creek High School in Bothell, WA. He builds machine-learning tools, quant research software and games, researches topological data analysis, and competes at the state, national and international level." />
   <meta name="author" content="Ronit Agarwal" />
-  <meta name="theme-color" content="#0A0A0B" />
+  <meta name="theme-color" content="#05050A" />
   <link rel="canonical" href="https://ronitagarwal.dev/" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Ronit Agarwal — I build AI that ships." />
-  <meta property="og:description" content="High school AI/ML developer shipping real products. State and national placements across tech, data, and business." />
+  <meta property="og:title" content="Ronit Agarwal · Builder, researcher, competitor" />
+  <meta property="og:description" content="Junior at North Creek High School. Machine learning, quant finance, topology research, and 25+ state, national and international awards." />
   <meta property="og:image" content="assets/og.svg" />
   <meta property="og:url" content="https://ronitagarwal.dev/" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Ronit Agarwal — I build AI that ships." />
+  <meta name="twitter:title" content="Ronit Agarwal · Builder, researcher, competitor" />
   <meta name="twitter:image" content="assets/og.svg" />
 
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@300..600&family=Instrument+Serif:ital@0;1&family=Syne:wght@500..800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
-
-  <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
+  <script>
+    document.documentElement.classList.add('js');
+    try { var p = localStorage.getItem('pal'); if (p) document.documentElement.dataset.pal = p; } catch (e) {}
+  </script>
 </head>
 <body>
-  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
-  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
-  <div class="cursor-ring" id="cursorRing" aria-hidden="true"><span class="cursor-label" id="cursorLabel"></span></div>
-  <div class="grain" aria-hidden="true"></div>
-  <canvas class="ember-layer" id="emberLayer" aria-hidden="true"></canvas>
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__bar loader__bar--t"><span class="mono">Ronit Agarwal</span><span class="mono">Portfolio · 2026</span></div>
+    <div class="loader__bar loader__bar--b"><span class="mono">Loading <b id="loaderNum">000</b></span><span class="mono" id="loaderWord">assembling</span><i id="loaderLine"></i></div>
+  </div>
 
-  <a class="skip-link" href="#work">Skip to work</a>
+  <canvas class="field" id="field" aria-hidden="true"></canvas>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"><span id="cursorLabel"></span></div>
+  <div class="comet" id="comet" aria-hidden="true"></div>
+  <div class="vig" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="hud mono" id="hud" aria-hidden="true"><span id="hudCh">00 · Opening</span><i></i><span id="hudPct">000</span></div>
+
+  <a class="skip" href="#work">Skip to projects</a>
 
   <header class="nav" id="nav">
     <a href="#top" class="nav__logo" data-magnetic aria-label="Ronit Agarwal, home">RA</a>
     <nav class="nav__links" aria-label="Primary">
-      <a href="#work">Projects</a>
-      <a href="#awards">Awards</a>
-      <a href="#lead">Leadership</a>
-      <a href="#about">About</a>
-      <a href="#contact" class="nav__cta" data-magnetic>Contact</a>
+      <a href="#work" data-scramble>Projects</a>
+      <a href="#research" data-scramble>Research</a>
+      <a href="#awards" data-scramble>Awards</a>
+      <a href="#lead" data-scramble>Leadership</a>
+      <a href="#academics" data-scramble>Academics</a>
     </nav>
+    <div class="nav__right">
+      <div class="pals" id="pals" role="group" aria-label="Color palette">
+        <button data-p="aurora" aria-label="Aurora palette"></button>
+        <button data-p="ember" aria-label="Ember palette"></button>
+        <button data-p="ice" aria-label="Ice palette"></button>
+        <button data-p="gold" aria-label="Gold palette"></button>
+      </div>
+      <a href="#contact" class="nav__cta" data-magnetic>Contact</a>
+    </div>
   </header>
 
   <main id="top">
 
     <!-- ============ HERO ============ -->
-    <section class="hero" id="hero">
-      <div class="hero__glow" aria-hidden="true"></div>
-      <div class="hero__inner">
-        <p class="hero__eyebrow mono" data-reveal>BOTHELL, WA — CLASS OF 2028</p>
-        <h1 class="hero__title">
-          <span class="hero__line">RONIT</span>
-          <span class="hero__line hero__line--accent">AGARWAL</span>
-        </h1>
+    <section class="hero" id="hero" data-ch="00 · Opening" data-shape="galaxy">
+      <div class="hero__top mono">
+        <span>Bothell, Washington</span>
+        <span>North Creek High School · Class of 2028</span>
+        <span id="clock">Pacific time</span>
+      </div>
+      <h1 class="hero__title" aria-label="Ronit Agarwal">
+        <span class="hero__line hero__line--a" data-split>RONIT</span>
+        <span class="hero__line hero__line--b" data-split>AGARWAL</span>
+      </h1>
+      <div class="hero__foot">
+        <p class="hero__intro">Junior at North Creek High School.<br>I'm a <span class="flip" id="flip" data-words="builder,researcher,competitor,tutor,quant,game dev"><span>builder</span></span></p>
+        <p class="hero__sub">Machine-learning tools, quant research software and games, plus the math underneath them.</p>
+        <a class="badge" href="#intro" aria-label="Scroll down" data-magnetic>
+          <svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="circ" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs><text><textPath href="#circ" textLength="496">CLASS OF 2028 ✦ BUILDER ✦ RESEARCHER ✦ COMPETITOR ✦</textPath></text></svg>
+          <i>↓</i>
+        </a>
       </div>
     </section>
 
-    <!-- ============ TICKER ============ -->
-    <div class="ticker" aria-hidden="true">
-      <div class="ticker__track" id="tickerTrack">
-        <span>AlphaLab · quant research OS in one file</span><b>✦</b>
-        <span>1st · FBLA Website Coding</span><b>✦</b>
-        <span>1st · USAAI AI Website Project</span><b>✦</b>
-        <span>50–100+ users on a solo ML build</span><b>✦</b>
-        <span>2nd · FPS Community Problem Solving</span><b>✦</b>
-        <span>Dev Director · 30,000+ students</span><b>✦</b>
-        <span>3rd · TSA Video Game Design</span><b>✦</b>
-        <span>Finalist · DECA Business Finance</span><b>✦</b>
-        <span>5× FPSPI International Qualifier</span><b>✦</b>
-        <!-- duplicated so the -50% loop is seamless -->
-        <span>AlphaLab · quant research OS in one file</span><b>✦</b>
-        <span>1st · FBLA Website Coding</span><b>✦</b>
-        <span>1st · USAAI AI Website Project</span><b>✦</b>
-        <span>50–100+ users on a solo ML build</span><b>✦</b>
-        <span>2nd · FPS Community Problem Solving</span><b>✦</b>
-        <span>Dev Director · 30,000+ students</span><b>✦</b>
-        <span>3rd · TSA Video Game Design</span><b>✦</b>
-        <span>Finalist · DECA Business Finance</span><b>✦</b>
-        <span>5× FPSPI International Qualifier</span><b>✦</b>
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__row" data-marquee="-1">
+        <div class="marquee__track">
+          <span>AIME Qualifier</span><b>✦</b><span class="o">1st · FBLA Website Coding</span><b>✦</b><span>Kaggle Bronze Medal</span><b>✦</b><span class="o">John Locke High Commendation</span><b>✦</b><span>1st · USAAI National</span><b>✦</b><span class="o">AP Scholar with Distinction</span><b>✦</b>
+        </div>
+      </div>
+      <div class="marquee__row marquee__row--sm" data-marquee="1">
+        <div class="marquee__track mono">
+          <span>machine learning</span><b>/</b><span>quantitative finance</span><b>/</b><span>topological data analysis</span><b>/</b><span>game design</span><b>/</b><span>future problem solving</span><b>/</b><span>competition math</span><b>/</b><span>teaching</span><b>/</b><span>cricket</span><b>/</b>
+        </div>
       </div>
     </div>
 
-    <!-- ============ SELECTED WORK (stacking cards) ============ -->
-    <section class="work" id="work">
-      <div class="section-head" data-reveal>
-        <span class="section-num mono">PROJECTS</span>
-        <h2 class="section-title">Projects.</h2>
-        <p class="section-sub">Things I've actually built and shipped, not class assignments. Each one started from a problem I wanted solved and a pile of raw data, and ended as something people could open and use.</p>
+    <!-- ============ INTRO ============ -->
+    <section class="intro" id="intro" data-ch="00 · About" data-shape="wave">
+      <p class="label mono" data-r><span class="dot"></span>About</p>
+      <p class="intro__text" data-scrub>I start from a problem I actually care about, like a wildfire season, a school's lost-and-found, or a market I don't understand yet, and take it the whole way to something people can open and use. The classes are the floor. I learn the most from shipping.</p>
+
+      <div class="stats">
+        <div class="stat glow" data-r><span class="stat__num"><span data-odo="4.0"></span></span><span class="stat__label mono">GPA</span></div>
+        <div class="stat glow" data-r style="--d:1"><span class="stat__num"><span data-odo="27"></span></span><span class="stat__label mono">awards and honors</span></div>
+        <div class="stat glow" data-r style="--d:2"><span class="stat__num"><span data-odo="13"></span></span><span class="stat__label mono">projects built</span></div>
+        <div class="stat glow" data-r style="--d:3"><span class="stat__num"><span data-odo="30"></span><small>k+</small></span><span class="stat__label mono">students in the program I help run</span></div>
       </div>
 
-      <div class="stack">
-        <article class="project" data-accent="#4F8BFF" style="--i:0">
-          <div class="project__grid">
-            <div class="project__body">
-              <span class="project__index mono">Solo build · JavaScript, Python, runs in the browser</span>
-              <h3 class="project__title" data-fill>AlphaLab</h3>
-              <p class="project__hook">A Bloomberg-terminal-style quant research desk that runs entirely in your browser.</p>
-              <p class="project__desc">One self-contained HTML file, no server and no API keys. It packs 118 strategy modules across trend, momentum, stat-arb, volatility, factors, and machine learning, plus portfolio optimizers and a risk lab that replays real crises like 2008, COVID, and 2022. An autonomous researcher generates hypotheses and only flags one as validated after it survives a five-stage gauntlet: out-of-sample consistency, probabilistic Sharpe, cost stress, parameter stability, and sub-period consistency. Every result, including the dead ends, gets filed away. All of it runs live on real market data going back to 2000.</p>
-              <div class="project__foot">
-                <div class="project__stat"><span class="big" data-count="118">0</span><span class="mono">strategy modules</span></div>
-                <ul class="tags mono"><li>Quant Finance</li><li>JavaScript</li><li>Backtesting</li><li>Zero backend</li></ul>
-              </div>
-              <div class="project__links">
-                <a href="https://boytiger-1.github.io/alphalab/" target="_blank" rel="noopener">Launch ↗</a>
-                <a href="https://github.com/BoyTiger-1/alphalab" target="_blank" rel="noopener">View code ↗</a>
-              </div>
-            </div>
-            <div class="project__visual" data-tilt>
-              <div class="window">
-                <div class="window__bar"><i></i><i></i><i></i><span class="mono">alphalab · terminal</span></div>
-                <canvas class="project__canvas" data-visual="alphalab" aria-hidden="true"></canvas>
-              </div>
-            </div>
-          </div>
-        </article>
+      <div class="intro__cols">
+        <p data-r>I'm Ronit. I keep a 4.0 and load up on computer science, math and business, the exact mix my projects need. This fall I qualified for the AIME, earned a High Commendation in the John Locke essay competition, and medaled in a Kaggle hackathon.</p>
+        <p data-r style="--d:1">I also work the money side, so I'm as comfortable with a balance sheet as a codebase. I run a nonprofit chapter's budget as its treasurer, sit on Washington DECA's advocacy team, and compete in finance events.</p>
+        <p data-r style="--d:2">Away from the screen I help run a 30,000-student international program, tutor kids from phonics through calculus, and play and coach cricket.</p>
+      </div>
+    </section>
 
-        <article class="project" data-accent="#2DD4BF" style="--i:1">
-          <div class="project__grid">
-            <div class="project__body">
-              <span class="project__index mono">Team build · Live at North Creek HS</span>
-              <h3 class="project__title" data-fill>Itemly</h3>
-              <p class="project__hook">Lost-and-found for a whole high school, matched the moment something's reported.</p>
-              <p class="project__desc">Built and deployed live at North Creek. The instant an item is reported, a matching engine flags likely matches in real time, backed by QR tagging, a live campus map, and a verified claim flow so things go back to the right person. Students and admins get separate views.</p>
-              <div class="project__foot">
-                <div class="project__stat"><span class="big">Live</span><span class="mono">at North Creek HS</span></div>
-                <ul class="tags mono"><li>JavaScript</li><li>Firebase</li><li>Leaflet Maps</li><li>Real-time matching</li></ul>
-              </div>
-            </div>
-            <div class="project__visual" data-tilt>
-              <div class="window">
-                <div class="window__bar"><i></i><i></i><i></i><span class="mono">itemly · campus</span></div>
-                <canvas class="project__canvas" data-visual="itemly" aria-hidden="true"></canvas>
-              </div>
-            </div>
-          </div>
-        </article>
+    <div class="band" data-band="-1" aria-hidden="true"><span>Things I've shipped ✦ Things I've shipped ✦ Things I've shipped ✦ Things I've shipped ✦</span></div>
 
-        <article class="project" data-accent="#FF5C1F" style="--i:2">
-          <div class="project__grid">
-            <div class="project__body">
-              <span class="project__index mono">Solo build · Python, Flask, scikit-learn</span>
-              <h3 class="project__title" data-fill>Wildfire Risk Prediction AI</h3>
-              <p class="project__hook">Tells you how likely a wildfire is right where you are.</p>
-              <p class="project__desc">Decision-tree models trained on NASA and Kaggle geospatial data. I built and shipped the whole thing myself: pulling and cleaning the raw data, engineering features from temperature, humidity, wind, and vegetation, checking the model actually held up, and putting it behind a Flask app that maps risk by region. Around 50 to 100 people used it.</p>
-              <div class="project__foot">
-                <div class="project__stat"><span class="big" data-count="100" data-suffix="+">0</span><span class="mono">users reached</span></div>
-                <ul class="tags mono"><li>Python</li><li>Flask</li><li>scikit-learn</li><li>Geospatial ML</li></ul>
-              </div>
-            </div>
-            <div class="project__visual" data-tilt>
-              <div class="window">
-                <div class="window__bar"><i></i><i></i><i></i><span class="mono">wildfire-risk.ai</span></div>
-                <canvas class="project__canvas" data-visual="wildfire" aria-hidden="true"></canvas>
-              </div>
-            </div>
-          </div>
-        </article>
+    <!-- ============ PROJECT SHOWCASE (pinned, scroll-driven) ============ -->
+    <section class="show" id="work" data-ch="01 · Projects" data-shape="cube">
+      <div class="show__stage">
+        <div class="show__glow" aria-hidden="true"></div>
+        <div class="show__flash" id="showFlash" aria-hidden="true"></div>
+        <aside class="show__side">
+          <span class="label mono"><span class="dot"></span>01 / Projects</span>
+          <div class="show__count" aria-hidden="true"><span class="show__digits" id="showCount"></span><small class="mono" id="showTotal"></small></div>
+          <ol class="show__list mono" id="showList"></ol>
+          <div class="show__bar" aria-hidden="true"><i id="showBar"></i></div>
+        </aside>
 
-        <article class="project" data-accent="#8B5CF6" style="--i:1">
-          <div class="project__grid">
-            <div class="project__body">
-              <span class="project__index mono">Team build · Adaptive ML</span>
-              <h3 class="project__title" data-fill>MindFlow AI</h3>
-              <p class="project__hook">A wellness coach that adapts to you instead of repeating itself.</p>
-              <p class="project__desc">Most of these apps hand everyone the same advice. This one tracks a person's check-ins over time and changes what it suggests based on them. It grew to around 50 users.</p>
-              <div class="project__foot">
-                <div class="project__stat"><span class="big" data-count="50" data-suffix="+">0</span><span class="mono">active users</span></div>
-                <ul class="tags mono"><li>AI/ML</li><li>Personalization</li><li>Adaptive Models</li></ul>
-              </div>
+        <div class="show__slides">
+          <article class="slide" style="--pa:#5B93FF">
+            <div class="slide__text">
+              <span class="slide__meta mono">Solo build · Jun – Jul 2026</span>
+              <h3 class="slide__title">AlphaLab</h3>
+              <p class="slide__hook">A Bloomberg-terminal-style quant research desk that runs entirely in your browser.</p>
+              <p class="slide__desc">One self-contained file, no server and no API keys. 118 strategy modules across trend, momentum, stat-arb, volatility, factors and machine learning, plus portfolio optimizers and a risk lab that replays 2008, COVID and 2022. An autonomous researcher only marks a hypothesis validated after a five-stage gauntlet of out-of-sample, cost-stress and stability checks.</p>
+              <ul class="tags mono"><li>Quant finance</li><li>JavaScript</li><li>Python</li><li>Backtesting</li></ul>
+              <div class="slide__foot"><div class="slide__stat"><b>118</b><small class="mono">strategy modules</small></div><a class="btn" href="https://boytiger-1.github.io/alphalab/" target="_blank" rel="noopener" data-cursor="Open">Launch <i>↗</i></a><a class="btn btn--ghost" href="https://github.com/BoyTiger-1/alphalab" target="_blank" rel="noopener" data-cursor="Code">Code <i>↗</i></a></div>
             </div>
-            <div class="project__visual" data-tilt>
-              <div class="window">
-                <div class="window__bar"><i></i><i></i><i></i><span class="mono">mindflow.ai</span></div>
-                <canvas class="project__canvas" data-visual="mindflow" aria-hidden="true"></canvas>
-              </div>
-            </div>
-          </div>
-        </article>
+            <div class="slide__visual"><canvas class="viz" data-visual="alphalab" aria-hidden="true"></canvas><span class="slide__tag mono">alphalab · terminal</span></div>
+          </article>
 
-        <article class="project" data-accent="#10B981" style="--i:2">
-          <div class="project__grid">
-            <div class="project__body">
-              <span class="project__index mono">Team build · EdTech</span>
-              <h3 class="project__title" data-fill>FinQuest AI</h3>
-              <p class="project__hook">Practice real money decisions somewhere they can't hurt you.</p>
-              <p class="project__desc">A financial-literacy game that reached about 50 students. Short lessons plus simulations, so you can try budgeting, saving, and investing in a sandbox before any of it is real money. The idea was to teach by doing, not by lecturing.</p>
-              <div class="project__foot">
-                <div class="project__stat"><span class="big" data-count="50" data-suffix="+">0</span><span class="mono">students taught</span></div>
-                <ul class="tags mono"><li>EdTech</li><li>Gamification</li><li>Financial Literacy</li></ul>
-              </div>
+          <article class="slide" style="--pa:#4FD8FF">
+            <div class="slide__text">
+              <span class="slide__meta mono">Solo build · Jun – Aug 2025</span>
+              <h3 class="slide__title">TerraSight</h3>
+              <p class="slide__hook">Climate and natural-disaster intelligence, built after wildfires hit my community.</p>
+              <p class="slide__desc">A full-stack decision-support system that pulls live data from NASA, NOAA, USGS and Open-Meteo and assesses fifteen hazards, from wildfires and floods to earthquakes and air quality. It maps hazards globally, models how one disaster cascades into another, simulates what-if scenarios and estimates economic impact. Every prediction ships with an explanation and a confidence score.</p>
+              <ul class="tags mono"><li>Python</li><li>Flask</li><li>Geospatial ML</li><li>Explainable AI</li></ul>
+              <div class="slide__foot"><div class="slide__stat"><b>15</b><small class="mono">hazards modeled</small></div></div>
             </div>
-            <div class="project__visual" data-tilt>
-              <div class="window">
-                <div class="window__bar"><i></i><i></i><i></i><span class="mono">finquest.ai</span></div>
-                <canvas class="project__canvas" data-visual="finquest" aria-hidden="true"></canvas>
-              </div>
-            </div>
-          </div>
-        </article>
+            <div class="slide__visual"><canvas class="viz" data-visual="terrasight" aria-hidden="true"></canvas><span class="slide__tag mono">terrasight · live hazards</span></div>
+          </article>
 
-        <article class="project" data-accent="#22D3EE" style="--i:3">
-          <div class="project__grid">
-            <div class="project__body">
-              <span class="project__index mono">Team build · Computer Vision</span>
-              <h3 class="project__title" data-fill>BrailleVision</h3>
-              <p class="project__hook">Read physical Braille with a regular phone camera.</p>
-              <p class="project__desc">No special hardware. It reads embossed or handwritten Braille from a photo, turns it into text, and reads it aloud. We built it for real pages, handwritten and machine-embossed, not just clean digital samples. Around 50 people used it.</p>
-              <div class="project__foot">
-                <div class="project__stat"><span class="big" data-count="50" data-suffix="+">0</span><span class="mono">users served</span></div>
-                <ul class="tags mono"><li>Computer Vision</li><li>Accessibility</li><li>OCR</li><li>Text-to-Speech</li></ul>
-              </div>
+          <article class="slide" style="--pa:#B8A6FF">
+            <div class="slide__text">
+              <span class="slide__meta mono">Team build · Winner</span>
+              <h3 class="slide__title">Ghost Watt</h3>
+              <p class="slide__hook">Photo-walk an empty school and AI ranks the costliest energy waste to fix first.</p>
+              <p class="slide__desc">Schools burn power all night on things nobody is using. Walk the building after hours taking photos, and Ghost Watt spots what was left running, estimates what each one costs, and hands back a ranked list so the most expensive waste gets fixed first.</p>
+              <ul class="tags mono"><li>Computer vision</li><li>Energy</li><li>Sustainability</li><li>AI</li></ul>
+              <div class="slide__foot"><div class="slide__stat"><b>Winner</b><small class="mono">award-winning build</small></div></div>
             </div>
-            <div class="project__visual" data-tilt>
-              <div class="window">
-                <div class="window__bar"><i></i><i></i><i></i><span class="mono">braillevision</span></div>
-                <canvas class="project__canvas" data-visual="braille" aria-hidden="true"></canvas>
-              </div>
-            </div>
-          </div>
-        </article>
+            <div class="slide__visual"><canvas class="viz" data-visual="ghostwatt" aria-hidden="true"></canvas><span class="slide__tag mono">ghost watt · night walk</span></div>
+          </article>
 
-        <article class="project" data-accent="#F59E0B" style="--i:4">
-          <div class="project__grid">
-            <div class="project__body">
-              <span class="project__index mono">Team build · Game Design</span>
-              <h3 class="project__title" data-fill>Prosperity Empire</h3>
-              <p class="project__hook">An economics lesson you play instead of read.</p>
-              <p class="project__desc">A browser idle game where the only way forward is balancing production, trade, and reinvestment. I wanted players to feel the tradeoffs themselves instead of being told about them. Around 50 people played it.</p>
-              <div class="project__foot">
-                <div class="project__stat"><span class="big" data-count="50" data-suffix="+">0</span><span class="mono">players</span></div>
-                <ul class="tags mono"><li>Game Design</li><li>Economics</li><li>Browser Game</li></ul>
-              </div>
+          <article class="slide" style="--pa:#FFB020">
+            <div class="slide__text">
+              <span class="slide__meta mono">Team build · Competitive coding</span>
+              <h3 class="slide__title">ByteBlitz</h3>
+              <p class="slide__hook">Real-time 1v1 coding duels.</p>
+              <p class="slide__desc">Two players, one problem, one clock. ByteBlitz pairs you with an opponent at your level through Elo-based matchmaking, runs the duel live, and tracks the result across seasonal ladders and global leaderboards.</p>
+              <ul class="tags mono"><li>Real-time</li><li>Elo matchmaking</li><li>Leaderboards</li><li>Seasons</li></ul>
+              <div class="slide__foot"><div class="slide__stat"><b>1v1</b><small class="mono">live coding duels</small></div></div>
             </div>
-            <div class="project__visual" data-tilt>
-              <div class="window">
-                <div class="window__bar"><i></i><i></i><i></i><span class="mono">prosperity-empire</span></div>
-                <canvas class="project__canvas" data-visual="prosperity" aria-hidden="true"></canvas>
-              </div>
+            <div class="slide__visual"><canvas class="viz" data-visual="byteblitz" aria-hidden="true"></canvas><span class="slide__tag mono">byteblitz · ranked match</span></div>
+          </article>
+
+          <article class="slide" style="--pa:#FF4D6D">
+            <div class="slide__text">
+              <span class="slide__meta mono">Team build · Sep 2025 – Jun 2026</span>
+              <h3 class="slide__title">Fallen Hour</h3>
+              <p class="slide__hook">A 2D top-down retro survival game. Gather, craft, and find the portal out.</p>
+              <p class="slide__desc">You're dropped into an infested world and have to gather resources, craft weapons and find the exit portal, all while fighting off the Corrupted Horde. It placed 3rd in Video Game Design at the Washington TSA State Competition.</p>
+              <ul class="tags mono"><li>Game design</li><li>Survival</li><li>Crafting</li><li>3rd · TSA State</li></ul>
+              <div class="slide__foot"><div class="slide__stat"><b>200+</b><small class="mono">plays on gx.games</small></div></div>
             </div>
+            <div class="slide__visual"><canvas class="viz" data-visual="fallenhour" aria-hidden="true"></canvas><span class="slide__tag mono">fallen hour · night 3</span></div>
+          </article>
+
+          <article class="slide" style="--pa:#7DD3FC">
+            <div class="slide__text">
+              <span class="slide__meta mono">Team build · Chess</span>
+              <h3 class="slide__title">JagChess</h3>
+              <p class="slide__hook">The all-in-one hub for chess clubs.</p>
+              <p class="slide__desc">One place for a chess club to run itself, instead of a group chat, a spreadsheet and a whiteboard.</p>
+              <ul class="tags mono"><li>Web app</li><li>Chess</li><li>Clubs</li></ul>
+            </div>
+            <div class="slide__visual"><canvas class="viz" data-visual="jagchess" aria-hidden="true"></canvas><span class="slide__tag mono">jagchess · live board</span></div>
+          </article>
+
+          <article class="slide" style="--pa:#FF6FB5">
+            <div class="slide__text">
+              <span class="slide__meta mono">Web platform · Pitch competitions</span>
+              <h3 class="slide__title">Pitchly</h3>
+              <p class="slide__hook">Compete head-to-head at pitching.</p>
+              <p class="slide__desc">A platform where you pitch against other people and find out whose idea, and whose delivery, actually lands.</p>
+              <ul class="tags mono"><li>Pitching</li><li>Competition</li><li>Public speaking</li></ul>
+            </div>
+            <div class="slide__visual"><canvas class="viz" data-visual="pitchly" aria-hidden="true"></canvas><span class="slide__tag mono">pitchly · round 2</span></div>
+          </article>
+
+          <article class="slide" style="--pa:#FFD166">
+            <div class="slide__text">
+              <span class="slide__meta mono">Team build · Game</span>
+              <h3 class="slide__title">WCLegends</h3>
+              <p class="slide__hook">Draft your legends. Build your nation. Rule the World Cup.</p>
+              <p class="slide__desc">A World Cup game built around the draft: pick your legends, assemble a national side, and take it through the tournament.</p>
+              <ul class="tags mono"><li>Game</li><li>Soccer</li><li>Drafting</li></ul>
+            </div>
+            <div class="slide__visual"><canvas class="viz" data-visual="wclegends" aria-hidden="true"></canvas><span class="slide__tag mono">wclegends · draft</span></div>
+          </article>
+
+          <article class="slide" style="--pa:#7C8CFF">
+            <div class="slide__text">
+              <span class="slide__meta mono">Team build · Live at North Creek HS</span>
+              <h3 class="slide__title">Itemly</h3>
+              <p class="slide__hook">Lost-and-found for a whole high school, matched the moment something's reported.</p>
+              <p class="slide__desc">Built and deployed live at North Creek. The instant an item is reported, a matching engine flags likely matches in real time, backed by QR tagging, a live campus map and a verified claim flow so things go back to the right person. Students and admins get separate views.</p>
+              <ul class="tags mono"><li>JavaScript</li><li>Firebase</li><li>Leaflet maps</li><li>Real-time matching</li></ul>
+              <div class="slide__foot"><div class="slide__stat"><b>Live</b><small class="mono">at North Creek HS</small></div></div>
+            </div>
+            <div class="slide__visual"><canvas class="viz" data-visual="itemly" aria-hidden="true"></canvas><span class="slide__tag mono">itemly · campus</span></div>
+          </article>
+
+          <article class="slide" style="--pa:#22D3EE">
+            <div class="slide__text">
+              <span class="slide__meta mono">Team build · Computer vision</span>
+              <h3 class="slide__title">BrailleVision</h3>
+              <p class="slide__hook">Read physical Braille with a regular phone camera.</p>
+              <p class="slide__desc">No special hardware. It reads embossed or handwritten Braille from a photo, turns it into text and reads it aloud. We built it for real pages, handwritten and machine-embossed, not just clean digital samples.</p>
+              <ul class="tags mono"><li>Computer vision</li><li>OCR</li><li>Accessibility</li><li>Text-to-speech</li></ul>
+              <div class="slide__foot"><div class="slide__stat"><b>50+</b><small class="mono">users served</small></div></div>
+            </div>
+            <div class="slide__visual"><canvas class="viz" data-visual="braille" aria-hidden="true"></canvas><span class="slide__tag mono">braillevision · scan</span></div>
+          </article>
+
+          <article class="slide" style="--pa:#A78BFA">
+            <div class="slide__text">
+              <span class="slide__meta mono">Team build · Adaptive ML</span>
+              <h3 class="slide__title">MindFlow AI</h3>
+              <p class="slide__hook">A wellness coach that adapts to you instead of repeating itself.</p>
+              <p class="slide__desc">Most of these apps hand everyone the same advice. This one tracks a person's check-ins over time and changes what it suggests based on them.</p>
+              <ul class="tags mono"><li>AI/ML</li><li>Personalization</li><li>Adaptive models</li></ul>
+              <div class="slide__foot"><div class="slide__stat"><b>50+</b><small class="mono">active users</small></div></div>
+            </div>
+            <div class="slide__visual"><canvas class="viz" data-visual="mindflow" aria-hidden="true"></canvas><span class="slide__tag mono">mindflow · check-in</span></div>
+          </article>
+
+          <article class="slide" style="--pa:#FDBA74">
+            <div class="slide__text">
+              <span class="slide__meta mono">Team build · EdTech</span>
+              <h3 class="slide__title">FinQuest AI</h3>
+              <p class="slide__hook">Practice real money decisions somewhere they can't hurt you.</p>
+              <p class="slide__desc">A financial-literacy game. Short lessons plus simulations, so you can try budgeting, saving and investing in a sandbox before any of it is real money. The idea was to teach by doing, not by lecturing.</p>
+              <ul class="tags mono"><li>EdTech</li><li>Gamification</li><li>Financial literacy</li></ul>
+              <div class="slide__foot"><div class="slide__stat"><b>50+</b><small class="mono">students taught</small></div></div>
+            </div>
+            <div class="slide__visual"><canvas class="viz" data-visual="finquest" aria-hidden="true"></canvas><span class="slide__tag mono">finquest · level map</span></div>
+          </article>
+
+          <article class="slide" style="--pa:#FBBF24">
+            <div class="slide__text">
+              <span class="slide__meta mono">Team build · Game design</span>
+              <h3 class="slide__title">Prosperity Empire</h3>
+              <p class="slide__hook">An economics lesson you play instead of read.</p>
+              <p class="slide__desc">A browser idle game where the only way forward is balancing production, trade and reinvestment. I wanted players to feel the tradeoffs themselves instead of being told about them.</p>
+              <ul class="tags mono"><li>Game design</li><li>Economics</li><li>Browser game</li></ul>
+              <div class="slide__foot"><div class="slide__stat"><b>50+</b><small class="mono">players</small></div></div>
+            </div>
+            <div class="slide__visual"><canvas class="viz" data-visual="prosperity" aria-hidden="true"></canvas><span class="slide__tag mono">prosperity empire</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ INTERLUDE: torus ============ -->
+    <section class="inter inter--sm" id="interMath" data-shape="torusc" data-ch="02 · Research" aria-hidden="true">
+      <div class="inter__pin">
+        <span class="inter__w inter__w--l">THE MATH</span>
+        <span class="inter__w inter__w--r">UNDERNEATH</span>
+        <span class="inter__cap mono">a torus: one piece, two loops, one void. topology counts them.</span>
+      </div>
+    </section>
+
+    <!-- ============ RESEARCH ============ -->
+    <section class="research" id="research" data-ch="02 · Research" data-shape="torus">
+      <span class="label mono" data-r><span class="dot"></span>02 / Research &amp; writing</span>
+
+      <div class="paper">
+        <div class="paper__text">
+          <span class="paper__kind mono" data-r>Publication · Topological data analysis</span>
+          <h3 class="paper__title" data-r>Topological Data Analysis of NFL Defensive Formations: Does Persistent Homology Predict Coverage Breakdowns Beyond Standard Geometric Baselines?</h3>
+          <p class="paper__desc" data-r>Eleven defenders are a point cloud. I treat each formation that way and ask whether persistent homology, which tracks the connected pieces and holes that appear as you grow a radius around every point, picks up coverage breakdowns that standard geometric baselines miss.</p>
+          <ul class="tags mono" data-r><li>Persistent homology</li><li>Sports analytics</li><li>Python</li><li>Machine learning</li></ul>
+        </div>
+        <figure class="lab glow" data-r aria-label="Interactive illustration of a Vietoris–Rips filtration and persistence barcode">
+          <figcaption class="mono"><span><span class="dot"></span>Vietoris–Rips filtration, live</span><span>move your cursor through it</span></figcaption>
+          <canvas class="lab__canvas" id="rips"></canvas>
+          <div class="lab__hud mono"><span>ε <b id="hudE">0.00</b></span><span>β₀ <b id="hudB">0</b></span><span>edges <b id="hudS">0</b></span><span>triangles <b id="hudT">0</b></span></div>
+          <div class="barcode" id="barcode">
+            <div class="barcode__plot" id="barcodePlot"><div class="barcode__sweep"></div></div>
+            <div class="barcode__axis mono"><span>ε = 0</span><span>persistence barcode · illustrative</span><span>ε max</span></div>
           </div>
+        </figure>
+      </div>
+
+      <div class="essay">
+        <article class="essay__card glow" data-r>
+          <span class="mono">Oct 2026 · John Locke Institute</span>
+          <h3>High <em>Commendation</em></h3>
+          <p>Science &amp; Technology category of the 2026 John Locke Institute global essay competition.</p>
+        </article>
+        <article class="essay__card glow" data-r style="--d:1">
+          <span class="mono">Future Problem Solving</span>
+          <h3>Guide to <em>FPS</em></h3>
+          <p>Contributing writer on the official Guide to Future Problem Solving, used by competitors in the international program.</p>
         </article>
       </div>
     </section>
 
-    <!-- ============ AWARDS ============ -->
-    <section class="awards" id="awards">
-      <div class="section-head" data-reveal>
-        <span class="section-num mono">COMPETITIONS</span>
-        <h2 class="section-title">Competitions.</h2>
-        <p class="section-sub">I compete in tech, data, and business at the state and national level. A few of the results.</p>
+    <!-- ============ INTERLUDE: trophy ============ -->
+    <section class="inter" id="inter" data-ch="03 · Awards" data-shape="trophy" aria-hidden="true">
+      <div class="inter__pin">
+        <span class="inter__w inter__w--l">ON THE</span>
+        <span class="inter__w inter__w--r">RECORD</span>
+        <span class="inter__cap mono">27 results · state, national, international</span>
       </div>
-      <ol class="awards__list">
-        <li class="award" data-rank="gold" data-reveal><span class="award__place mono">1st</span><span class="award__title">Website Coding &amp; Development</span><span class="award__org">Washington FBLA SBLC</span><span class="award__date mono">Apr 2026</span><span class="award__go" aria-hidden="true">→</span></li>
-        <li class="award" data-rank="gold" data-reveal><span class="award__place mono">1st</span><span class="award__title">AI Website Project</span><span class="award__org">USAAI National Competition Series</span><span class="award__date mono">Dec 2025</span><span class="award__go" aria-hidden="true">→</span></li>
-        <li class="award" data-rank="silver" data-reveal><span class="award__place mono">2nd</span><span class="award__title">Community Problem Solving, Senior Division</span><span class="award__org">Washington FPS State</span><span class="award__date mono">Mar 2026</span><span class="award__go" aria-hidden="true">→</span></li>
-        <li class="award" data-rank="bronze" data-reveal><span class="award__place mono">3rd</span><span class="award__title">Video Game Design</span><span class="award__org">Washington TSA State</span><span class="award__date mono">Apr 2026</span><span class="award__go" aria-hidden="true">→</span></li>
-        <li class="award" data-rank="bronze" data-reveal><span class="award__place mono">3rd</span><span class="award__title">Math League, WA State Championships (Team)</span><span class="award__org">WA High School Championships</span><span class="award__date mono">Apr 2025</span><span class="award__go" aria-hidden="true">→</span></li>
-        <li class="award" data-reveal><span class="award__place mono">6th</span><span class="award__title">Data Science &amp; Analytics</span><span class="award__org">Washington TSA State</span><span class="award__date mono">Apr 2026</span><span class="award__go" aria-hidden="true">→</span></li>
-        <li class="award" data-reveal><span class="award__place mono">Finalist</span><span class="award__title">Business Finance Series</span><span class="award__org">Washington DECA SCDC</span><span class="award__date mono">Feb 2026</span><span class="award__go" aria-hidden="true">→</span></li>
-        <li class="award" data-reveal><span class="award__place mono">Finalist</span><span class="award__title">USAII Hackathon</span><span class="award__org">USAII</span><span class="award__date mono">Jun 2026</span><span class="award__go" aria-hidden="true">→</span></li>
-        <li class="award" data-reveal><span class="award__place mono">Shortlist</span><span class="award__title">Science &amp; Technology Essay</span><span class="award__org">John Locke Institute Essay Competition</span><span class="award__date mono">2026</span><span class="award__go" aria-hidden="true">→</span></li>
-        <li class="award" data-reveal><span class="award__place mono">5×</span><span class="award__title">FPSPI International Conference Qualifier</span><span class="award__org">Future Problem Solving</span><span class="award__date mono">2022–2026</span><span class="award__go" aria-hidden="true">→</span></li>
+    </section>
+
+    <!-- ============ AWARDS (light sheet) ============ -->
+    <section class="awards" id="awards" data-ch="03 · Awards" data-shape="trophy">
+      <div class="coin" id="coin" aria-hidden="true"><span id="coinText">1st</span></div>
+      <header class="awards__head">
+        <div>
+          <span class="label mono" data-r><span class="dot"></span>03 / Awards</span>
+          <h2 class="head__title" data-r="mask"><span>Every <em>result.</em></span></h2>
+        </div>
+        <div class="awards__count" data-r><span id="awCount">27</span><small class="mono">shown</small></div>
+      </header>
+
+      <div class="feats">
+        <article class="feat glow" data-r><span class="mono">Nov 2026 · MAA</span><h3>AIME<br>Qualifier</h3><p>American Invitational Mathematics Examination</p></article>
+        <article class="feat glow" data-r style="--d:1"><span class="mono">Oct 2026 · John Locke Institute</span><h3>High<br>Commendation</h3><p>Global essay competition, Science &amp; Technology</p></article>
+        <article class="feat glow" data-r style="--d:2"><span class="mono">Apr 2026 · Washington FBLA</span><h3>1st<br>in State</h3><p>Website Coding &amp; Development</p></article>
+        <article class="feat glow" data-r style="--d:3"><span class="mono">Dec 2025 · USAAI</span><h3>1st<br>National</h3><p>AI Website Project, National Competition Series</p></article>
+      </div>
+
+      <div class="filters mono" id="filters" role="group" aria-label="Filter awards" data-r>
+        <button class="is-on" data-f="all">All</button>
+        <button data-f="cs">CS &amp; AI</button>
+        <button data-f="math">Math</button>
+        <button data-f="biz">Business &amp; finance</button>
+        <button data-f="fps">Writing &amp; problem solving</button>
+        <button data-f="acad">Academic</button>
+      </div>
+
+      <ol class="aw" id="awList">
+        <li class="aw__year mono" data-y>2026</li>
+        <li class="aw__row" data-cat="math"><span class="aw__place">Qualifier</span><span class="aw__title">AIME, American Invitational Mathematics Examination</span><span class="aw__org">Mathematical Association of America</span><span class="aw__date mono">Nov 2026</span></li>
+        <li class="aw__row" data-cat="fps"><span class="aw__place">High Commendation</span><span class="aw__title">John Locke Essay Competition, Science &amp; Technology</span><span class="aw__org">John Locke Institute</span><span class="aw__date mono">Oct 2026</span></li>
+        <li class="aw__row" data-cat="cs" data-medal="bronze"><span class="aw__place">Bronze Medal</span><span class="aw__title">PTCG AI Battle Challenge Simulation</span><span class="aw__org">The Pokémon Company · Kaggle Hackathon</span><span class="aw__date mono">Sep 2026</span></li>
+        <li class="aw__row" data-cat="biz"><span class="aw__place">Distinction</span><span class="aw__title">International Finance Olympiad <i>243 / 300</i></span><span class="aw__org">International Finance Olympiad</span><span class="aw__date mono">Sep 2026</span></li>
+        <li class="aw__row" data-cat="cs"><span class="aw__place">Hon. Mention</span><span class="aw__title">CSC Summer Impactathon</span><span class="aw__org">Webb Schools CSC</span><span class="aw__date mono">Aug 2026</span></li>
+        <li class="aw__row" data-cat="biz"><span class="aw__place">Higher Distinction</span><span class="aw__title">International Business Olympiad <i>249 / 300</i></span><span class="aw__org">International Business Olympiad</span><span class="aw__date mono">Aug 2026</span></li>
+        <li class="aw__row" data-cat="cs" data-medal="gold"><span class="aw__place">Winner</span><span class="aw__title">ML Empowerment Build Challenge 2.0, Productivity Booster</span><span class="aw__org">ML Empowerment Foundation</span><span class="aw__date mono">Aug 2026</span></li>
+        <li class="aw__row" data-cat="acad"><span class="aw__place">Distinction</span><span class="aw__title">AP Scholar with Distinction</span><span class="aw__org">College Board</span><span class="aw__date mono">Jul 2026</span></li>
+        <li class="aw__row" data-cat="cs"><span class="aw__place">Finalist</span><span class="aw__title">USAII Global AI Hackathon 2026</span><span class="aw__org">USAII</span><span class="aw__date mono">Jun 2026</span></li>
+        <li class="aw__row" data-cat="acad"><span class="aw__place">Honoree</span><span class="aw__title">National Recognition Program</span><span class="aw__org">College Board</span><span class="aw__date mono">Jun 2026</span></li>
+        <li class="aw__row" data-cat="cs" data-medal="gold"><span class="aw__place">1st</span><span class="aw__title">Website Coding &amp; Development</span><span class="aw__org">Washington FBLA State Business Leadership Conference</span><span class="aw__date mono">Apr 2026</span></li>
+        <li class="aw__row" data-cat="cs" data-medal="bronze"><span class="aw__place">3rd</span><span class="aw__title">Video Game Design</span><span class="aw__org">Washington TSA State Competition</span><span class="aw__date mono">Apr 2026</span></li>
+        <li class="aw__row" data-cat="cs"><span class="aw__place">6th</span><span class="aw__title">Data Science &amp; Analytics</span><span class="aw__org">Washington TSA State Competition</span><span class="aw__date mono">Apr 2026</span></li>
+        <li class="aw__row" data-cat="fps" data-medal="silver"><span class="aw__place">2nd</span><span class="aw__title">Community Problem Solving, Senior Division</span><span class="aw__org">Washington Future Problem Solving State</span><span class="aw__date mono">Mar 2026</span></li>
+        <li class="aw__row" data-cat="biz"><span class="aw__place">Finalist</span><span class="aw__title">Business Finance Series <i>exam 86 · role-plays 96, 92</i></span><span class="aw__org">Washington DECA State Career Development Conference</span><span class="aw__date mono">Feb 2026</span></li>
+
+        <li class="aw__year mono" data-y>2025</li>
+        <li class="aw__row" data-cat="cs" data-medal="gold"><span class="aw__place">1st</span><span class="aw__title">AI Website Project</span><span class="aw__org">USAAI National Competition Series</span><span class="aw__date mono">Dec 2025</span></li>
+        <li class="aw__row" data-cat="cs"><span class="aw__place">Finalist</span><span class="aw__title">International Computer Science Competition</span><span class="aw__org">ICSC</span><span class="aw__date mono">Nov 2025</span></li>
+        <li class="aw__row" data-cat="math" data-medal="silver"><span class="aw__place">2nd</span><span class="aw__title">Math Is Cool Championships, Team</span><span class="aw__org">Math Is Cool · NCHS Math Club</span><span class="aw__date mono">Oct 2025</span></li>
+        <li class="aw__row" data-cat="cs" data-medal="bronze"><span class="aw__place">3rd</span><span class="aw__title">WorthyWorks2 Hackathon</span><span class="aw__org">Worthy Works</span><span class="aw__date mono">Oct 2025</span></li>
+        <li class="aw__row" data-cat="cs" data-medal="silver"><span class="aw__place">2nd</span><span class="aw__title">ReverieHacks Hackathon, Ideathon Track</span><span class="aw__org">ReverieHacks</span><span class="aw__date mono">Aug 2025</span></li>
+        <li class="aw__row" data-cat="math" data-medal="bronze"><span class="aw__place">3rd</span><span class="aw__title">Math League, WA State Championships, Team</span><span class="aw__org">WA High School Championships</span><span class="aw__date mono">Apr 2025</span></li>
+
+        <li class="aw__year mono" data-y>Earlier &amp; ongoing</li>
+        <li class="aw__row" data-cat="fps"><span class="aw__place">5×</span><span class="aw__title">International Conference Qualifier</span><span class="aw__org">Future Problem Solving Program International</span><span class="aw__date mono">2022 – 26</span></li>
+        <li class="aw__row" data-cat="fps" data-medal="bronze"><span class="aw__place">3rd</span><span class="aw__title">Global Issues, Middle Division, Individual</span><span class="aw__org">Washington FPS State</span><span class="aw__date mono">State</span></li>
+        <li class="aw__row" data-cat="fps" data-medal="bronze"><span class="aw__place">3rd</span><span class="aw__title">Global Issues, Middle Division, Team</span><span class="aw__org">Washington FPS State</span><span class="aw__date mono">State</span></li>
+        <li class="aw__row" data-cat="math" data-medal="bronze"><span class="aw__place">3rd</span><span class="aw__title">Math Is Cool Championships, Team</span><span class="aw__org">Math Is Cool</span><span class="aw__date mono">Champs</span></li>
+        <li class="aw__row" data-cat="math"><span class="aw__place">5th</span><span class="aw__title">Math Is Cool Championships, Team</span><span class="aw__org">Math Is Cool</span><span class="aw__date mono">Champs</span></li>
+        <li class="aw__row" data-cat="acad"><span class="aw__place">Award</span><span class="aw__title">President's Award for Educational Excellence</span><span class="aw__org">President's Education Awards Program</span><span class="aw__date mono">Academic</span></li>
       </ol>
     </section>
 
-    <!-- ============ LEADERSHIP ============ -->
-    <section class="lead" id="lead">
-      <div class="section-head" data-reveal>
-        <span class="section-num mono">OFF THE KEYBOARD</span>
-        <h2 class="section-title">Leadership &amp; impact.</h2>
-        <p class="section-sub">What I spend time on when I'm not building software.</p>
-      </div>
-      <div class="lead__grid">
-        <article class="card card--wide" data-reveal>
-          <div class="card__metric"><span class="card__metric-num">30,000+</span><span class="card__metric-label mono">students in the program</span></div>
-          <h3>Development Director, FPSPI</h3>
-          <span class="card__role mono">International Student Advisory Council · since Sep 2021</span>
-          <p>I own development initiatives for a global academic program with 30,000+ students competing every year and 250,000+ over the past decade. I'm a contributing writer on the official Guide to FPS and a five-time International Conference qualifier, so the council's work stays grounded in what competitors actually experience.</p>
-        </article>
-        <article class="card" data-reveal>
-          <div class="card__metric"><span class="card__metric-num">54</span><span class="card__metric-label mono">care kits assembled</span></div>
-          <h3>Treasurer, NCHS UNICEF</h3>
-          <span class="card__role mono">since Sep 2025</span>
-          <p>Landed a partnership with Mary's Place and ran a 10-day winter drive: 50 volunteers, 160+ items worth about $1,300, 54 care kits. Built the annual budget to a $400 surplus.</p>
-        </article>
-        <article class="card" data-reveal>
-          <div class="card__metric"><span class="card__metric-num">+22%</span><span class="card__metric-label mono">membership growth</span></div>
-          <h3>VP of Competition, Math Club</h3>
-          <span class="card__role mono">prev. Event Chair</span>
-          <p>Grew membership 22% and run the AMC and NC³ competitions, owning logistics and the calendar with faculty advisors.</p>
-        </article>
-        <article class="card" data-reveal>
-          <div class="card__metric"><span class="card__metric-num">120+</span><span class="card__metric-label mono">students supported</span></div>
-          <h3>Volunteer Chair, Mu Alpha Theta</h3>
-          <span class="card__role mono">Mathematics Honor Society</span>
-          <p>I lead 40+ tutors supporting 120+ middle schoolers for MathCounts and MOEMS. The chapter earned the national Rubin Award for service.</p>
-        </article>
-        <article class="card" data-reveal>
-          <div class="card__metric"><span class="card__metric-num">+50%</span><span class="card__metric-label mono">membership growth</span></div>
-          <h3>Event Manager, Chess Club</h3>
-          <span class="card__role mono">prev. Culture Manager &amp; Editor</span>
-          <p>Grew membership 50%, helped run the school's first chess tournament, and edited the club newsletter.</p>
-        </article>
-        <article class="card" data-reveal>
-          <div class="card__metric"><span class="card__metric-num">1-on-1</span><span class="card__metric-label mono">every level</span></div>
-          <h3>Volunteer Tutor, Kumon</h3>
-          <span class="card__role mono">Bothell · since Jun 2025</span>
-          <p>One-on-one instruction across every level, from early reading and phonics through algebra and calculus, tracking each student against their own plan.</p>
-        </article>
-        <article class="card" data-reveal>
-          <div class="card__metric"><span class="card__metric-num">Free</span><span class="card__metric-label mono">worldwide</span></div>
-          <h3>Academic Tutor, Schoolhouse.world</h3>
-          <span class="card__role mono">Remote · since Jul 2025</span>
-          <p>Free math and history tutoring for students anywhere, making solid academic help available no matter where someone is starting from.</p>
-        </article>
-        <article class="card" data-reveal>
-          <div class="card__metric"><span class="card__metric-num">Cricket</span><span class="card__metric-label mono">player &amp; coach</span></div>
-          <h3>PBL Cricket Academy</h3>
-          <span class="card__role mono">Player &amp; Youth Coach · since Apr 2025</span>
-          <p>I play at PBL Cricket Academy and coach the younger players on batting, bowling, and game strategy, running structured practice that builds skill alongside teamwork and discipline.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- ============ CREDENTIALS ============ -->
-    <section class="creds" id="creds">
-      <div class="section-head" data-reveal>
-        <span class="section-num mono">CERTIFICATIONS</span>
-        <h2 class="section-title">Certifications.</h2>
-        <p class="section-sub">Certifications and honors, on the record.</p>
-      </div>
-      <ul class="creds__list">
-        <li class="cred" data-reveal><span class="cred__name">AI Website Project</span><span class="cred__org mono">USAAI National Competition Series</span></li>
-        <li class="cred" data-reveal><span class="cred__name">President's Award for Educational Excellence</span><span class="cred__org mono">Academic recognition</span></li>
-        <li class="cred" data-reveal><span class="cred__name">Seal of Biliteracy — Hindi</span><span class="cred__org mono">Washington State</span></li>
-        <li class="cred" data-reveal><span class="cred__name">Business Achievement Award — Advocate</span><span class="cred__org mono">FBLA · Data Science</span></li>
-        <li class="cred" data-reveal><span class="cred__name">Business Achievement Award — Contributor &amp; Leader</span><span class="cred__org mono">FBLA</span></li>
-        <li class="cred" data-reveal><span class="cred__name">Financial Wellness &amp; Algebra 1.5</span><span class="cred__org mono">Exploration certificates</span></li>
-      </ul>
-    </section>
-
-    <!-- ============ COURSEWORK ============ -->
-    <section class="coursework" id="coursework">
-      <div class="section-head" data-reveal>
-        <span class="section-num mono">COURSEWORK</span>
-        <h2 class="section-title">Coursework.</h2>
-        <p class="section-sub">AP exams, and the graduate-level courses I've worked through on my own time.</p>
-      </div>
-
-      <div class="ap-grid">
-        <div class="ap" data-score="5" data-reveal><span class="ap__score">5</span><span class="ap__name">AP Calculus AB</span><span class="ap__date mono">May 2026</span></div>
-        <div class="ap" data-score="5" data-reveal><span class="ap__score">5</span><span class="ap__name">AP Computer Science A</span><span class="ap__date mono">May 2026</span></div>
-        <div class="ap" data-score="5" data-reveal><span class="ap__score">5</span><span class="ap__name">AP Physics I</span><span class="ap__date mono">May 2026</span></div>
-        <div class="ap" data-score="5" data-reveal><span class="ap__score">5</span><span class="ap__name">AP Computer Science Principles</span><span class="ap__date mono">May 2025</span></div>
-        <div class="ap" data-score="5" data-reveal><span class="ap__score">5</span><span class="ap__name">AP Microeconomics</span><span class="ap__date mono">May 2026</span></div>
-        <div class="ap" data-score="5" data-reveal><span class="ap__score">5</span><span class="ap__name">AP World History</span><span class="ap__date mono">May 2025</span></div>
-        <div class="ap" data-score="4" data-reveal><span class="ap__score">4</span><span class="ap__name">AP Seminar</span><span class="ap__date mono">May 2026</span></div>
-        <div class="ap" data-score="4" data-reveal><span class="ap__score">4</span><span class="ap__name">AP Psychology</span><span class="ap__date mono">May 2026</span></div>
-      </div>
-
-      <h3 class="coursework__sub mono">ONLINE COURSES</h3>
-      <ul class="courses__list">
-        <li class="course" data-reveal><span class="course__name">Advanced Learning Algorithms</span><span class="course__org mono">Coursera · DeepLearning.AI · Stanford</span></li>
-        <li class="course" data-reveal><span class="course__name">Supervised Machine Learning: Regression &amp; Classification</span><span class="course__org mono">Coursera · DeepLearning.AI · Stanford</span></li>
-        <li class="course" data-reveal><span class="course__name">Introduction to HTML, CSS &amp; JavaScript</span><span class="course__org mono">Coursera · IBM</span></li>
-        <li class="course" data-reveal><span class="course__name">Intro to AI for Financial Planning &amp; Analysis</span><span class="course__org mono">Codecademy</span></li>
-        <li class="course" data-reveal><span class="course__name">Train Your First Robot in Isaac Lab</span><span class="course__org mono">NVIDIA</span></li>
-      </ul>
-    </section>
-
-    <!-- ============ ABOUT ============ -->
-    <section class="about" id="about">
-      <div class="section-head" data-reveal>
-        <span class="section-num mono">ABOUT</span>
-        <h2 class="section-title">Who's behind it.</h2>
-      </div>
-      <div class="about__grid">
-        <div class="about__bio" data-reveal>
-          <p>I'm Ronit, a sophomore at North Creek High School in Bothell. Mostly I build things: machine-learning tools, web apps, and games. I like starting from a problem I actually care about and taking it the whole way to something people can use.</p>
-          <p>I keep a <strong class="hl">4.0</strong> and load up on CS, math, and business, the exact mix my projects need. The classes are the floor, though. I learn the most from actually shipping.</p>
-          <p>I also work the money side, so I'm as comfortable with a balance sheet as a codebase. I run a nonprofit chapter's budget as its treasurer and compete in DECA and FBLA finance events, doing the forecasting, budgeting, and financial-statement analysis they throw at you.</p>
-          <p>Away from the screen I help run a <strong class="hl">30,000-student</strong> international program, tutor kids from phonics through calculus, and play cricket at PBL Cricket Academy, where I also coach the younger players.</p>
+    <!-- ============ LEADERSHIP (horizontal) ============ -->
+    <section class="lead" id="lead" data-ch="04 · Leadership" data-shape="globe">
+      <div class="lead__pin">
+        <header class="head head--row">
+          <div>
+            <span class="label mono" data-r><span class="dot"></span>04 / Leadership &amp; service</span>
+            <h2 class="head__title" data-r="mask"><span>Off the <em>keyboard.</em></span></h2>
+          </div>
+          <p class="head__sub" data-r>Where the hours go when I'm not building. <span class="lead__hint mono">Keep scrolling →</span></p>
+        </header>
+        <div class="lead__track" id="leadTrack">
+          <article class="card card--hero glow">
+            <span class="card__n mono">01</span>
+            <div class="card__metric">30,000+<small class="mono">students compete each year</small></div>
+            <h3>Development Director</h3>
+            <span class="card__role mono">Future Problem Solving · International Student Advisory Council</span>
+            <p>I own development initiatives for a global academic program with 250,000+ participants over the past decade. In FPS since 2021, on the council since 2024, director since July 2025, and a five-time International Conference qualifier.</p>
+          </article>
+          <article class="card glow">
+            <span class="card__n mono">02</span>
+            <div class="card__metric">54<small class="mono">care kits assembled</small></div>
+            <h3>Treasurer</h3>
+            <span class="card__role mono">NCHS UNICEF · since Sep 2025</span>
+            <p>Landed a partnership with Mary's Place and ran a 10-day winter drive: 50 volunteers, 160+ items worth about $1,300. Built the annual budget to a $400 surplus.</p>
+          </article>
+          <article class="card glow">
+            <span class="card__n mono">03</span>
+            <div class="card__metric">+22%<small class="mono">membership growth</small></div>
+            <h3>VP of Competition</h3>
+            <span class="card__role mono">NCHS Math Club · prev. Event Chair</span>
+            <p>I run the AMC and NC³ competitions, owning logistics and the calendar with our faculty advisors.</p>
+          </article>
+          <article class="card glow">
+            <span class="card__n mono">04</span>
+            <div class="card__metric">120+<small class="mono">middle schoolers coached</small></div>
+            <h3>Volunteer Chair</h3>
+            <span class="card__role mono">NCHS Mu Alpha Theta · since Jun 2026</span>
+            <p>I lead 40+ tutors preparing middle schoolers for MathCounts and MOEMS. The chapter earned the national Rubin Award for service.</p>
+          </article>
+          <article class="card glow">
+            <span class="card__n mono">05</span>
+            <div class="card__metric">+50%<small class="mono">membership growth</small></div>
+            <h3>VP of Finance &amp; Event Manager</h3>
+            <span class="card__role mono">NCHS Chess Club · prev. Culture Manager, Editor</span>
+            <p>Helped run the school's first chess tournament, edited the club newsletter, and now keep the books.</p>
+          </article>
+          <article class="card glow">
+            <span class="card__n mono">06</span>
+            <div class="card__metric">2<small class="mono">state-level seats</small></div>
+            <h3>State-Level Teams</h3>
+            <span class="card__role mono">Washington DECA · Washington FBLA · since Aug 2026</span>
+            <p>Advocacy Team member for Washington DECA and State Programs Leadership Committee member for Washington FBLA.</p>
+          </article>
+          <article class="card glow">
+            <span class="card__n mono">07</span>
+            <div class="card__metric">Intern<small class="mono">summer 2026</small></div>
+            <h3>Growth &amp; Outreach</h3>
+            <span class="card__role mono">AdmitPro.ai · Jul – Sep 2026</span>
+            <p>Led regional outreach to students, educators and community partners for an AI essay-strategy startup, and beta-tested the platform along the way.</p>
+          </article>
+          <article class="card glow">
+            <span class="card__n mono">08</span>
+            <div class="card__metric">1-on-1<small class="mono">phonics through calculus</small></div>
+            <h3>Volunteer Tutor</h3>
+            <span class="card__role mono">Kumon, Bothell · Schoolhouse.world · since Jul 2025</span>
+            <p>In-person instruction at every Kumon level, plus free online math and history tutoring for students anywhere.</p>
+          </article>
+          <article class="card glow">
+            <span class="card__n mono">09</span>
+            <div class="card__metric">Cricket<small class="mono">player &amp; youth coach</small></div>
+            <h3>PBL Cricket Academy</h3>
+            <span class="card__role mono">since Apr 2025</span>
+            <p>I play, and I coach the younger players on batting, bowling and game strategy.</p>
+          </article>
         </div>
-        <div class="about__skills" data-reveal data-reveal-delay="1">
-          <div class="skillrow"><span class="skillrow__label mono">Languages</span><ul class="tags mono"><li>Python</li><li>Java</li><li>JavaScript</li><li>HTML/CSS</li></ul></div>
-          <div class="skillrow"><span class="skillrow__label mono">Domains</span><ul class="tags mono"><li>Machine Learning</li><li>Data Analysis</li><li>Web Development</li><li>Financial Analysis</li></ul></div>
-          <div class="skillrow"><span class="skillrow__label mono">Tools</span><ul class="tags mono"><li>Flask</li><li>Git/GitHub</li><li>GameMaker Studio 2</li><li>Kaggle</li></ul></div>
-          <div class="skillrow"><span class="skillrow__label mono">Spoken</span><ul class="tags mono"><li>English (native)</li><li>Hindi (native)</li><li>Spanish</li><li>German</li></ul></div>
+        <div class="lead__bar" aria-hidden="true"><i id="leadBar"></i></div>
+      </div>
+    </section>
+
+    <!-- ============ ACADEMICS ============ -->
+    <section class="acad" id="academics" data-ch="05 · Academics" data-shape="five">
+      <header class="head">
+        <span class="label mono" data-r><span class="dot"></span>05 / Academics</span>
+        <h2 class="head__title" data-r="mask"><span>The <em>transcript</em> side.</span></h2>
+        <p class="head__sub" data-r>North Creek High School, 2024 – 2028. 4.0 GPA, AP Scholar with Distinction, College Board National Recognition Program, National Honor Society.</p>
+      </header>
+
+      <div class="ap">
+        <div class="ap__tile glow" data-r><span class="ap__score">5</span><span class="ap__name">AP Calculus AB</span><span class="mono">May 2026</span></div>
+        <div class="ap__tile glow" data-r style="--d:1"><span class="ap__score">5</span><span class="ap__name">AP Computer Science A</span><span class="mono">May 2026</span></div>
+        <div class="ap__tile glow" data-r style="--d:2"><span class="ap__score">5</span><span class="ap__name">AP Physics 1</span><span class="mono">May 2026</span></div>
+        <div class="ap__tile glow" data-r style="--d:3"><span class="ap__score">5</span><span class="ap__name">AP Microeconomics</span><span class="mono">May 2026</span></div>
+        <div class="ap__tile glow" data-r><span class="ap__score">5</span><span class="ap__name">AP CS Principles</span><span class="mono">May 2025</span></div>
+        <div class="ap__tile glow" data-r style="--d:1"><span class="ap__score">5</span><span class="ap__name">AP World History</span><span class="mono">May 2025</span></div>
+        <div class="ap__tile ap__tile--4 glow" data-r style="--d:2"><span class="ap__score">4</span><span class="ap__name">AP Seminar</span><span class="mono">May 2026</span></div>
+        <div class="ap__tile ap__tile--4 glow" data-r style="--d:3"><span class="ap__score">4</span><span class="ap__name">AP Psychology</span><span class="mono">May 2026</span></div>
+      </div>
+      <div class="acad__cols">
+        <div>
+          <h3 class="acad__h mono" data-r><span class="dot"></span>Courses on my own time</h3>
+          <ul class="rows">
+            <li data-r><span>Advanced Learning Algorithms</span><span class="mono">DeepLearning.AI · Stanford</span></li>
+            <li data-r><span>Supervised Machine Learning: Regression &amp; Classification</span><span class="mono">DeepLearning.AI · Stanford</span></li>
+            <li data-r><span>Introduction to HTML, CSS &amp; JavaScript</span><span class="mono">IBM · Coursera</span></li>
+            <li data-r><span>Intro to AI for Financial Planning &amp; Analysis</span><span class="mono">Codecademy</span></li>
+            <li data-r><span>Train Your First Robot in Isaac Lab</span><span class="mono">NVIDIA</span></li>
+            <li data-r><span>Claude 101</span><span class="mono">Anthropic</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="acad__h mono" data-r><span class="dot"></span>Certifications &amp; honors</h3>
+          <ul class="rows">
+            <li data-r><span>Seal of Biliteracy, Hindi</span><span class="mono">Washington State</span></li>
+            <li data-r><span>Business Achievement Award, Advocate Level</span><span class="mono">FBLA · Data Science</span></li>
+            <li data-r><span>Business Achievement Awards, Contributor &amp; Leader</span><span class="mono">FBLA</span></li>
+            <li data-r><span>AI Website Project</span><span class="mono">USAAI National Series</span></li>
+            <li data-r><span>Exploration: Financial Wellness</span><span class="mono">Certificate</span></li>
+            <li data-r><span>National Honor Society · Mu Alpha Theta</span><span class="mono">Member</span></li>
+          </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ============ BEYOND CODE ============ -->
-    <section class="beyond" id="beyond">
-      <div class="section-head" data-reveal>
-        <span class="section-num mono">BEYOND CODE</span>
-        <h2 class="section-title">When I'm not shipping.</h2>
-        <p class="section-sub">The stuff that keeps me sharp away from a screen.</p>
-      </div>
-      <div class="beyond__grid">
-        <article class="beyond__item" data-reveal>
-          <span class="beyond__tag mono">CRICKET</span>
-          <p>I play at PBL Cricket Academy and coach the younger players, batting, bowling, and the strategy side of the game.</p>
-        </article>
-        <article class="beyond__item" data-reveal data-reveal-delay="1">
-          <span class="beyond__tag mono">CHESS</span>
-          <p>Ran my school's chess club, helped put on its first tournament, and edited the newsletter. Membership grew by half.</p>
-        </article>
-        <article class="beyond__item" data-reveal data-reveal-delay="2">
-          <span class="beyond__tag mono">MATH</span>
-          <p>Math is the throughline. I compete, coach MathCounts and MOEMS through Mu Alpha Theta, and still do problems just for the fun of it.</p>
-        </article>
+      <div class="skills" data-r>
+        <div><span class="mono">Languages</span><p>Python · Java · JavaScript · HTML/CSS</p></div>
+        <div><span class="mono">Domains</span><p>Machine learning · Data analysis · Web development · Financial analysis</p></div>
+        <div><span class="mono">Tools</span><p>Flask · scikit-learn · Git/GitHub · GameMaker · Kaggle</p></div>
+        <div><span class="mono">Spoken</span><p>English · Hindi · Spanish · German</p></div>
       </div>
     </section>
 
     <!-- ============ CONTACT ============ -->
-    <section class="contact" id="contact">
-      <span class="section-num mono" data-reveal>CONTACT</span>
-      <h2 class="contact__title" data-fill>Let's build something.</h2>
-      <p class="contact__sub" data-reveal>I'm open to internships, hackathon teams, and hard problems. Email's the fastest way to reach me.</p>
-      <div class="contact__socials" data-reveal data-reveal-delay="1">
-        <a class="social" href="mailto:ronit_agarwal@outlook.com" data-magnetic aria-label="Email Ronit Agarwal">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        </a>
-        <a class="social" href="https://github.com/BoyTiger-1" target="_blank" rel="noopener" data-magnetic aria-label="GitHub, BoyTiger-1">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-        </a>
-        <a class="social" href="https://www.linkedin.com/in/ronit-agarwal-70129b349" target="_blank" rel="noopener" data-magnetic aria-label="LinkedIn, Ronit Agarwal">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
-        </a>
+    <section class="contact" id="contact" data-ch="06 · Contact" data-shape="at">
+      <div class="marquee__row contact__marquee" data-marquee="-1" aria-hidden="true">
+        <div class="marquee__track"><span>Let's talk</span><b>✦</b><span class="o">Let's build</span><b>✦</b><span>Let's talk</span><b>✦</b><span class="o">Let's research</span><b>✦</b></div>
+      </div>
+      <div class="contact__body">
+        <span class="label mono" data-r><span class="dot"></span>06 / Contact</span>
+        <h2 class="sr">Contact</h2>
+        <p class="contact__sub" data-r>Open to research mentorship, internships, hackathon teams and hard problems. Email is the fastest way to reach me.</p>
+        <button class="contact__mail" id="mail" data-r data-cursor="Copy" data-mail="ronit_agarwal@outlook.com"><span>ronit_agarwal@outlook.com</span><i class="mono" id="mailHint">click to copy</i></button>
+        <div class="contact__links" data-r>
+          <a class="pill" href="mailto:ronit_agarwal@outlook.com" data-magnetic>Email <i>↗</i></a>
+          <a class="pill" href="https://github.com/BoyTiger-1" target="_blank" rel="noopener" data-magnetic>GitHub <i>↗</i></a>
+          <a class="pill" href="https://www.linkedin.com/in/ronit-agarwal-70129b349" target="_blank" rel="noopener" data-magnetic>LinkedIn <i>↗</i></a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <span class="mono">© 2026 Ronit Agarwal · Bothell, WA</span>
-    <span class="footer__braille mono" title="ronit" data-translate="ronit" tabindex="0">⠗⠕⠝⠊⠞</span>
+  <section class="credits" aria-label="Credits">
+    <dl>
+      <div data-r><dt class="mono">Designed, built &amp; shipped by</dt><dd>Ronit Agarwal</dd></div>
+      <div data-r><dt class="mono">Featuring</dt><dd>AlphaLab · TerraSight · Ghost Watt · ByteBlitz · Fallen Hour · JagChess · Pitchly · WCLegends · Itemly · BrailleVision · MindFlow AI · FinQuest AI · Prosperity Empire</dd></div>
+      <div data-r><dt class="mono">On location</dt><dd>North Creek High School · Bothell, Washington</dd></div>
+      <div data-r><dt class="mono">Class of</dt><dd>2028</dd></div>
+    </dl>
+  </section>
+
+  <footer class="footer mono">
+    <span>© 2026 Ronit Agarwal · Bothell, WA</span>
+    <span class="footer__braille" title="ronit" data-translate="ronit" tabindex="0">⠗⠕⠝⠊⠞</span>
+    <a href="#top">Back to top ↑</a>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
   <script src="js/visuals.js"></script>
+  <script src="js/field.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
